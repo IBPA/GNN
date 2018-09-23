@@ -1,0 +1,427 @@
+J. Faith	MG1655 LB wt untreated r1
+J. Faith	MG1655 LB wt untreated r2
+J. Faith	MG1655 LB wt norf 25ng r1
+J. Faith	MG1655 LB wt norf 25ng r2
+J. Faith	MG1655 LB wt norf 50ng r1
+J. Faith	MG1655 LB wt norf 50ng r2
+J. Faith	MG1655 LB wt norf 75ng r1
+J. Faith	MG1655 LB wt norf 75ng r2
+J. Faith	MG1655 LB wt norf 100ng r1
+J. Faith	MG1655 LB wt norf 100ng r2
+J. Faith	MG1655 LB D recA untreated r1
+J. Faith	MG1655 LB D recA untreated r2
+J. Faith	MG1655 LB D recA norf 50ng r1
+J. Faith	MG1655 LB D recA norf 50ng r2
+J. Faith	MG1655 LB D recA norf 100ng r1
+J. Faith	MG1655 LB D recA norf 100ng r2
+M. Covert	MG1655 M9 glucose aerobic wt r1
+M. Covert	MG1655 M9 glucose aerobic wt r2
+M. Covert	MG1655 M9 glucose aerobic wt r3
+M. Covert	MG1655 M9 glucose anaerobic D appY r1
+M. Covert	MG1655 M9 glucose anaerobic D appY r2
+M. Covert	MG1655 M9 glucose anaerobic D appY r3
+M. Covert	MG1655 M9 glucose anaerobic D arcA r1
+M. Covert	MG1655 M9 glucose anaerobic D arcA r2
+M. Covert	MG1655 M9 glucose anaerobic D arcA r3
+M. Covert	MG1655 M9 glucose anaerobic D fnr r1
+M. Covert	MG1655 M9 glucose anaerobic D fnr r2
+M. Covert	MG1655 M9 glucose anaerobic D fnr r3
+M. Covert	MG1655 M9 glucose anaerobic D arcA D fnr r1
+M. Covert	MG1655 M9 glucose anaerobic D arcA D fnr r2
+M. Covert	MG1655 M9 glucose anaerobic D arcA D fnr r3
+M. Covert	MG1655 M9 glucose anaerobic D oxyR r1
+M. Covert	MG1655 M9 glucose anaerobic D oxyR r2
+M. Covert	MG1655 M9 glucose anaerobic D oxyR r3
+M. Covert	MG1655 M9 glucose anaerobic D soxS r1
+M. Covert	MG1655 M9 glucose anaerobic D soxS r2
+M. Covert	MG1655 M9 glucose anaerobic D soxS r3
+M. Covert	MG1655 M9 glucose anaerobic wt r1
+M. Covert	MG1655 M9 glucose anaerobic wt r2
+M. Covert	MG1655 M9 glucose anaerobic wt r3
+M. Covert	MG1655 M9 glucose anaerobic wt r4
+M. Covert	MG1655 M9 glucose aerobic D appY r1
+M. Covert	MG1655 M9 glucose aerobic D appY r2
+M. Covert	MG1655 M9 glucose aerobic D appY r3
+M. Covert	MG1655 M9 glucose aerobic D arcA r1
+M. Covert	MG1655 M9 glucose aerobic D arcA r2
+M. Covert	MG1655 M9 glucose aerobic D arcA r3
+M. Covert	MG1655 M9 glucose aerobic D fnr r1
+M. Covert	MG1655 M9 glucose aerobic D fnr r2
+M. Covert	MG1655 M9 glucose aerobic D fnr r3
+M. Covert	MG1655 M9 glucose aerobic D arcA D fnr r1
+M. Covert	MG1655 M9 glucose aerobic D arcA D fnr r2
+M. Covert	MG1655 M9 glucose aerobic D arcA D fnr r3
+M. Covert	MG1655 M9 glucose aerobic D oxyR r1
+M. Covert	MG1655 M9 glucose aerobic D oxyR r2
+M. Covert	MG1655 M9 glucose aerobic D oxyR r3
+M. Covert	MG1655 M9 glucose aerobic D soxS r1
+M. Covert	MG1655 M9 glucose aerobic D soxS r2
+M. Covert	MG1655 M9 glucose aerobic D soxS r3
+C. Herring	MG1655 MOPS pBAD r1
+C. Herring	MG1655 MOPS pBAD r2
+C. Herring	MG1655 MOPS pBAD r3
+C. Herring	MG1655 MOPS pBAD arabinose amber supressor tRNA r1
+C. Herring	MG1655 MOPS pBAD arabinose amber supressor tRNA r2
+C. Herring	MG1655 MOPS pBAD arabinose amber supressor tRNA r3
+Y. Kang	MG1655 D fnr aerobic r1
+Y. Kang	MG1655 D fnr aerobic r2
+Y. Kang	MG1655 D fnr aerobic r3
+Y. Kang	MG1655 wt anaerobic r1
+Y. Kang	MG1655 wt anaerobic r2
+Y. Kang	MG1655 wt anaerobic r3
+Y. Kang	MG1655 D fnr anaerobic r1
+Y. Kang	MG1655 D fnr anaerobic r2
+Y. Kang	MG1655 D fnr anaerobic r3
+Y. Kang	MG1655 D fnr anaerobic r4
+F. Haddadin	MG1655 late log LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 late log LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 late log LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate IPTG r1
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate IPTG r2
+F. Haddadin	MG1655 late log 1h post incubation LB glucose magnesiumsulfate IPTG r3
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate IPTG r1
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate IPTG r2
+F. Haddadin	MG1655 late log 4h post incubation LB glucose magnesiumsulfate IPTG r3
+F. Haddadin	MG1655 pPROExCat late log LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 pPROExCat late log LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 pPROExCat late log LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 pPROExCat late log LB glucose magnesiumsulfate r4
+F. Haddadin	MG1655 pPROExCat late log LB glucose magnesiumsulfate r5
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate IPTG r1
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate IPTG r2
+F. Haddadin	MG1655 pPROExCat late log 1h post incubation LB glucose magnesiumsulfate IPTG r3
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate r1
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate r2
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate r3
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate IPTG r1
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate IPTG r2
+F. Haddadin	MG1655 pPROExCat late log 4h post incubation LB glucose magnesiumsulfate IPTG r3
+S. Brokx	MG1655 MOPS glucose aerobic r1
+S. Brokx	MG1655 MOPS glucose aerobic r2
+S. Brokx	MG1655 MOPS glucose log anaerobic r1
+S. Brokx	MG1655 MOPS glucose log anaerobic r2
+S. Brokx	MG1655 MOPS glucose nitrate log anaerobic r1
+S. Brokx	MG1655 MOPS glucose nitrate log anaerobic r2
+D. Dwyer	MG1655 U lacZ t0 r1
+D. Dwyer	MG1655 U lacZ t30 r1
+D. Dwyer	MG1655 U lacZ t60 r1
+D. Dwyer	MG1655 U lacZ t90 r1
+D. Dwyer	MG1655 U ccdB t0 r1
+D. Dwyer	MG1655 U ccdB t0 r2
+D. Dwyer	MG1655 U ccdB t30 r1
+D. Dwyer	MG1655 U ccdB t30 r2
+D. Dwyer	MG1655 U ccdB t60 r1
+D. Dwyer	MG1655 U ccdB t60 r2
+D. Dwyer	MG1655 U ccdB t90 r1
+D. Dwyer	MG1655 U ccdB t90 r2
+M. Kohanski	MG1655 untreated t0 r1
+M. Kohanski	MG1655 untreated t30 r1
+M. Kohanski	MG1655 untreated t60 r1
+M. Kohanski	MG1655 untreated t120 r1
+M. Kohanski	MG1655 ampicillin 5ug t30 r1
+M. Kohanski	MG1655 ampicillin 5ug t60 r1
+M. Kohanski	MG1655 ampicillin 5ug t120 r1
+M. Kohanski	MG1655 kanamycin t30 r1
+M. Kohanski	MG1655 kanamycin t60 r1
+M. Kohanski	MG1655 kanamycin t120 r1
+M. Kohanski	MG1655 norfloxacin t30 r1
+M. Kohanski	MG1655 norfloxacin t60 r1
+M. Kohanski	MG1655 norfloxacin t120 r1
+M. Kohanski	MG1655 spectinomycin t30 r1
+M. Kohanski	MG1655 spectinomycin t60 r1
+M. Kohanski	MG1655 spectinomycin t120 r1
+M. Bradley	MG1655 wt t90m r1
+M. Bradley	MG1655 wt t90m r2
+M. Bradley	MG1655 wt t90m r3
+M. Bradley	MG1655 wt t150m r1
+M. Bradley	MG1655 wt t150m r2
+M. Bradley	MG1655 wt t150m r3
+M. Bradley	MG1655 wt t240m r1
+M. Bradley	MG1655 wt t240m r2
+M. Bradley	MG1655 wt t240m r3
+M. Bradley	MG1655 wt t360m r1
+M. Bradley	MG1655 wt t360m r2
+M. Bradley	MG1655 wt t360m r3
+M. Bradley	MG1655 D fis t90m r1
+M. Bradley	MG1655 D fis t90m r2
+M. Bradley	MG1655 D fis t90m r3
+M. Bradley	MG1655 D fis t150m r1
+M. Bradley	MG1655 D fis t150m r2
+M. Bradley	MG1655 D fis t150m r3
+M. Bradley	MG1655 D fis t240m r1
+M. Bradley	MG1655 D fis t240m r2
+M. Bradley	MG1655 D fis t240m r3
+M. Bradley	MG1655 D fis t360m r1
+M. Bradley	MG1655 D fis t360m r2
+M. Bradley	MG1655 D fis t360m r3
+C. Reigstad	MG1655 t150m aerobic r1
+C. Reigstad	MG1655 t150m aerobic r2
+C. Reigstad	MG1655 t300m aerobic r1
+C. Reigstad	MG1655 t300m aerobic r2
+C. Reigstad	MG1655 t480m aerobic r1
+C. Reigstad	MG1655 t480m aerobic r2
+C. Reigstad	MG1655 t720m aerobic r1
+C. Reigstad	MG1655 t720m aerobic r2
+C. Reigstad	MG1655 t1080m aerobic r1
+C. Reigstad	MG1655 t1080m aerobic r2
+C. Reigstad	MG1655 t1560m aerobic r1
+C. Reigstad	MG1655 t1560m aerobic r2
+C. Reigstad	MG1655 t150m anaerobic r1
+C. Reigstad	MG1655 t150m anaerobic r2
+C. Reigstad	MG1655 t180m anaerobic r1
+C. Reigstad	MG1655 t180m anaerobic r2
+C. Reigstad	MG1655 t225m anaerobic r1
+C. Reigstad	MG1655 t225m anaerobic r2
+C. Reigstad	MG1655 t270m anaerobic r1
+C. Reigstad	MG1655 t270m anaerobic r2
+C. Reigstad	MG1655 t405m anaerobic r1
+C. Reigstad	MG1655 t405m anaerobic r2
+T. Dong	MG1655 LB wt r1
+T. Dong	MG1655 LB wt r2
+T. Dong	MG1655 LB wt r3
+T. Dong	MG1655 LB D rpoS r1
+T. Dong	MG1655 LB D rpoS r2
+T. Dong	MG1655 LB D rpoS r3
+T. Dong	MG1655 M63 glucose wt exponential r1
+T. Dong	MG1655 M63 glucose wt exponential r2
+T. Dong	MG1655 M63 glucose wt exponential r3
+T. Dong	MG1655 M63 glucose wt stationary r1
+T. Dong	MG1655 M63 glucose wt stationary r2
+T. Dong	MG1655 M63 glucose wt stationary r3
+T. Dong	MG1655 M63 glucose D rpoS exponential r1
+T. Dong	MG1655 M63 glucose D rpoS exponential r2
+T. Dong	MG1655 M63 glucose D rpoS exponential r3
+T. Dong	MG1655 M63 glucose D rpoS stationary r1
+T. Dong	MG1655 M63 glucose D rpoS stationary r2
+T. Dong	MG1655 M63 glucose D rpoS stationary r3
+X. Yang	MG1655 wt M9C glucose t24h biofilm r1
+X. Yang	MG1655 wt plus R1drd19 M9C glucose t24h biofilm r1
+M. Laubacher	MG1655 untreated -5min r1
+M. Laubacher	MG1655 untreated -5min r2
+M. Laubacher	MG1655 untreated -5min r3
+M. Laubacher	MG1655 untreated 5min r1
+M. Laubacher	MG1655 untreated 5min r2
+M. Laubacher	MG1655 untreated 20min r1
+M. Laubacher	MG1655 untreated 20min r2
+M. Laubacher	MG1655 untreated 20min r3
+M. Laubacher	MG1655 untreated 40min r1
+M. Laubacher	MG1655 untreated 40min r2
+M. Laubacher	MG1655 untreated 40min r3
+M. Laubacher	MG1655 untreated 40min r4
+M. Laubacher	MG1655 mecillinam 30ng -5min r1
+M. Laubacher	MG1655 mecillinam 30ng -5min r2
+M. Laubacher	MG1655 mecillinam 30ng 5min r1
+M. Laubacher	MG1655 mecillinam 30ng 5min r2
+M. Laubacher	MG1655 mecillinam 30ng 20min r1
+M. Laubacher	MG1655 mecillinam 30ng 20min r2
+M. Laubacher	MG1655 mecillinam 30ng 40min r1
+M. Laubacher	MG1655 mecillinam 30ng 40min r2
+M. Laubacher	MG1655 mecillinam 30ng 40min r3
+M. Laubacher	MG1655 cefsulodin 10ug -5min r1
+M. Laubacher	MG1655 cefsulodin 10ug -5min r2
+M. Laubacher	MG1655 cefsulodin 10ug 5min r1
+M. Laubacher	MG1655 cefsulodin 10ug 5min r2
+M. Laubacher	MG1655 cefsulodin 10ug 20min r1
+M. Laubacher	MG1655 cefsulodin 10ug 20min r2
+M. Laubacher	MG1655 cefsulodin 10ug 40min r1
+M. Laubacher	MG1655 cefsulodin 10ug 40min r2
+M. Laubacher	MG1655 cefsulodin 10ug 40min r3
+M. Laubacher	MG1655 cefsulodin plus mecillinam -5min r1
+M. Laubacher	MG1655 cefsulodin plus mecillinam -5min r2
+M. Laubacher	MG1655 cefsulodin plus mecillinam -5min r3
+M. Laubacher	MG1655 cefsulodin plus mecillinam 5min r1
+M. Laubacher	MG1655 cefsulodin plus mecillinam 5min r2
+M. Laubacher	MG1655 cefsulodin plus mecillinam 5min r3
+M. Laubacher	MG1655 cefsulodin plus mecillinam 20min r1
+M. Laubacher	MG1655 cefsulodin plus mecillinam 20min r2
+M. Laubacher	MG1655 cefsulodin plus mecillinam 20min r3
+M. Laubacher	MG1655 cefsulodin plus mecillinam 40min r1
+M. Laubacher	MG1655 cefsulodin plus mecillinam 40min r2
+M. Laubacher	MG1655 cefsulodin plus mecillinam 40min r3
+M. Laubacher	MG1655 cefsulodin plus mecillinam 40min r4
+A. Ito	MG1655 biofilm attachment r1
+A. Ito	MG1655 biofilm attachment r2
+A. Ito	MG1655 biofilm attachment r3
+A. Ito	MG1655 biofilm colony formation r1
+A. Ito	MG1655 biofilm colony formation r2
+A. Ito	MG1655 biofilm colony formation r3
+A. Ito	MG1655 biofilm maturation r1
+A. Ito	MG1655 biofilm maturation r2
+A. Ito	MG1655 biofilm maturation r3
+A. Ito	MG1655 planktonic exponential r1
+A. Ito	MG1655 planktonic exponential r2
+A. Ito	MG1655 planktonic exponential r3
+A. Ito	MG1655 planktonic stationary r1
+A. Ito	MG1655 planktonic stationary r2
+A. Ito	MG1655 planktonic stationary r3
+E. Masse	MG1655 pBAD ryhB r1
+E. Masse	MG1655 pBAD ryhB r2
+E. Masse	MG1655 pBAD ryhB arabinose r1
+E. Masse	MG1655 pBAD ryhB arabinose r2
+E. Masse	MG1655 pNM12 arabinose r1
+E. Masse	MG1655 pNM12 arabinose r2
+A. Ito	MG1655 MOPS wt exponential r1
+A. Ito	MG1655 MOPS wt exponential r2
+A. Ito	MG1655 MOPS wt exponential r3
+A. Ito	MG1655 MOPS wt stationary r1
+A. Ito	MG1655 MOPS wt stationary r2
+A. Ito	MG1655 MOPS wt stationary r3
+A. Ito	MG1655 MOPS wt biofilm r1
+A. Ito	MG1655 MOPS wt biofilm r2
+A. Ito	MG1655 MOPS wt biofilm r3
+A. Ito	MG1655 MOPS D rpoS exponential r1
+A. Ito	MG1655 MOPS D rpoS exponential r2
+A. Ito	MG1655 MOPS D rpoS exponential r3
+A. Ito	MG1655 MOPS D rpoS stationary r1
+A. Ito	MG1655 MOPS D rpoS stationary r2
+A. Ito	MG1655 MOPS D rpoS stationary r3
+A. Ito	MG1655 MOPS D rpoS biofilm r1
+A. Ito	MG1655 MOPS D rpoS biofilm r2
+A. Ito	MG1655 MOPS D rpoS biofilm r3
+Y. Asakura	MG1655 pHSG415 vector 0h r1
+Y. Asakura	MG1655 pHSG415 vector 0h r2
+Y. Asakura	MG1655 pHSG415 vector 1h r1
+Y. Asakura	MG1655 pHSG415 vector 1h r2
+Y. Asakura	MG1655 pHSG415 vector 1h50m r1
+Y. Asakura	MG1655 pHSG415 vector 1h50m r2
+Y. Asakura	MG1655 pHSG415 vector 3h r1
+Y. Asakura	MG1655 pHSG415 vector 3h r2
+Y. Asakura	MG1655 pTN9 r+m+ 0h r1
+Y. Asakura	MG1655 pTN9 r+m+ 0h r2
+Y. Asakura	MG1655 pTN9 r+m+ 1h r1
+Y. Asakura	MG1655 pTN9 r+m+ 1h r2
+Y. Asakura	MG1655 pTN9 r+m+ 1h50m r1
+Y. Asakura	MG1655 pTN9 r+m+ 1h50m r2
+Y. Asakura	MG1655 pTN9 r+m+ 3h r1
+Y. Asakura	MG1655 pTN9 r+m+ 3h r2
+Y. Asakura	MG1655 pTN11 r-m+ 0h r1
+Y. Asakura	MG1655 pTN11 r-m+ 0h r2
+Y. Asakura	MG1655 pTN11 r-m+ 1h r1
+Y. Asakura	MG1655 pTN11 r-m+ 1h r2
+Y. Asakura	MG1655 pTN11 r-m+ 1h50m r1
+Y. Asakura	MG1655 pTN11 r-m+ 1h50m r2
+Y. Asakura	MG1655 pTN11 r-m+ 3h r1
+Y. Asakura	MG1655 pTN11 r-m+ 3h r2
+S. Harcum	MG1655 WT t=0 noIPTG r1
+S. Harcum	MG1655 WT t=0 noIPTG r2
+S. Harcum	MG1655 WT t=0 noIPTG r3
+S. Harcum	MG1655 WT t=1 noIPTG r1
+S. Harcum	MG1655 WT t=1 noIPTG r2
+S. Harcum	MG1655 WT t=1 noIPTG r3
+S. Harcum	MG1655 WT t=4 noIPTG r1
+S. Harcum	MG1655 WT t=4 noIPTG r2
+S. Harcum	MG1655 WT t=4 noIPTG r3
+S. Harcum	MG1655 pPROEx-CAT t=0 noIPTG r1
+S. Harcum	MG1655 pPROEx-CAT t=0 noIPTG r2
+S. Harcum	MG1655 pPROEx-CAT t=0 noIPTG r3
+S. Harcum	MG1655 pPROEx-CAT t=1 noIPTG r1
+S. Harcum	MG1655 pPROEx-CAT t=1 noIPTG r2
+S. Harcum	MG1655 pPROEx-CAT t=1 noIPTG r3
+S. Harcum	MG1655 pPROEx-CAT t=4 noIPTG r1
+S. Harcum	MG1655 pPROEx-CAT t=4 noIPTG r2
+S. Harcum	MG1655 pPROEx-CAT t=4 noIPTG r3
+S. Harcum	MG1655 WT t=1 IPTG r1
+S. Harcum	MG1655 WT t=1 IPTG r2
+S. Harcum	MG1655 WT t=1 IPTG r3
+S. Harcum	MG1655 WT t=4 IPTG r1
+S. Harcum	MG1655 WT t=4 IPTG r2
+S. Harcum	MG1655 WT t=4 IPTG r3
+S. Harcum	MG1655 pPROEx-CAT t=1 IPTG r1
+S. Harcum	MG1655 pPROEx-CAT t=1 IPTG r2
+S. Harcum	MG1655 pPROEx-CAT t=1 IPTG r3
+S. Harcum	MG1655 pPROEx-CAT t=4 IPTG r1
+S. Harcum	MG1655 pPROEx-CAT t=4 IPTG r2
+S. Harcum	MG1655 pPROEx-CAT t=4 IPTG r3
+J. Winkler	MG1655 untreated t0
+J. Winkler	MG1655 tetracycline 10 t30
+J. Winkler	MG1655 tetracycline 10 t60
+J. Winkler	MG1655 tetracycline 10 t120
+J. Winkler	MG1655 tetracycline 128 t30
+J. Winkler	MG1655 tetracycline 128 t60
+J. Winkler	MG1655 tetracycline 128 t120
+D. Dwyer	MG1655 baseline t0 r1
+D. Dwyer	MG1655 untreated t30 r1
+D. Dwyer	MG1655 untreated t60 r1
+D. Dwyer	MG1655 untreated t120 r1
+D. Dwyer	MG1655 gent t30 r1
+D. Dwyer	MG1655 gent t60 r1
+D. Dwyer	MG1655 gent t120 r1
+D. Dwyer	MG1655 spec t30 r1
+D. Dwyer	MG1655 spec t60 r1
+D. Dwyer	MG1655 spec t120 r1
+K. Anderson	MG1655 untreated t0 r1
+K. Anderson	MG1655 amp 1ug t30 r1
+K. Anderson	MG1655 amp 1ug t60 r1
+K. Anderson	MG1655 amp 1ug t120 r1
+K. Anderson	MG1655 amp 2pt5ug t30 r1
+K. Anderson	MG1655 amp 2pt5ug t60 r1
+K. Anderson	MG1655 amp 2pt5ug t120 r1
+K. Allison	MG1655 untreated t0
+K. Allison	MG1655 gent t30
+K. Allison	MG1655 gent t60
+K. Allison	MG1655 gluconate t30
+K. Allison	MG1655 gluconate t60
+K. Allison	MG1655 mannitol t30
+K. Allison	MG1655 mannitol t60
+K. Allison	MG1655 gluconate gent t30
+K. Allison	MG1655 gluconate gent t60
+K. Allison	MG1655 mannitol gent t30
+K. Allison	MG1655 mannitol gent t60
+H. Lee	MG1655 pretreatment r1
+H. Lee	MG1655 untreated t10min r1
+H. Lee	MG1655 amp 5ug t10min r1
+H. Lee	MG1655 gent 5ug t10min r1
+H. Lee	MG1655 norf 250ng t10min r1
+H. Lee	MG1655 spec 400ug t10min r1
+H. Lee	MG1655 tetracycline 10ug t10min r1
+H. Lee	MG1655 tetracycline 128ug t10min r1
+D. Dwyer	MG1655 wt untreated t0
+D. Dwyer	MG1655 wt untreated t30
+D. Dwyer	MG1655 wt untreated t60
+D. Dwyer	MG1655 wt untreated t90
+D. Dwyer	MG1655 wt untreated t120
+D. Dwyer	MG1655 wt MMC 2pt5ug t30
+D. Dwyer	MG1655 wt MMC 2pt5ug t60
+D. Dwyer	MG1655 wt MMC 2pt5ug t90
+D. Dwyer	MG1655 wt MMC 2pt5ug t120
+D. Dwyer	MG1655 wt UV 500en t30
+D. Dwyer	MG1655 wt UV 500en t60
+D. Dwyer	MG1655 wt UV 500en t90
+D. Dwyer	MG1655 wt UV 500en t120
+D. Dwyer	MG1655 untreated 30min r1
+D. Dwyer	MG1655 untreated 60min r1
+D. Dwyer	MG1655 DMSO 30min r1
+D. Dwyer	MG1655 DMSO 60min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng 30min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng 60min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng A1 50uM inoculation 30min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng A1 50uM inoculation 60min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng A1 50uM simultaneous 30min r1
+D. Dwyer	MG1655 ciprofloxacin 25ng A1 50uM simultaneous 60min r1
+D. Dwyer	MG1655 A1 50uM inoculation 0min r1
+D. Dwyer	MG1655 A1 50uM inoculation 30min r1
+D. Dwyer	MG1655 A1 50uM inoculation 60min r1
+H. Lee	MG1655 t0 r1
+H. Lee	MG1655 amp t30 r1
+H. Lee	MG1655 amp t60 r1
+H. Lee	MG1655 gent t30
+H. Lee	MG1655 gent t60 r1
+H. Lee	MG1655 amp gent t30 r1
+H. Lee	MG1655 amp gent t60 r1
+J. Winkler	MG1655 M9 cells only t60
+J. Winkler	MG1655 M9 cells only t180
+J. Winkler	MG1655 M9 GFP reporter t0
+J. Winkler	MG1655 M9 GFP reporter t60
+J. Winkler	MG1655 M9 GFP reporter t180
+J. Winkler	MG1655 M9 Madelate Madelamide pathway t0
+J. Winkler	MG1655 M9 Madelate Madelamide pathway t60
+J. Winkler	MG1655 M9 Madelate Madelamide pathway t180
