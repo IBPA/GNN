@@ -1,3 +1,4 @@
+#!/usr/bin/env Rscript
 # Gene Regulatory Network Inference using GENIE3
 
 library("GENIE3")
@@ -27,13 +28,13 @@ if (length(args)==0) {
 } else {
   base_dir <- file.path(args[1])
 }
+set.seed(123)
 
 #dataObj <- getSampleData()
-dataObj <- getActualData(base_dir)
-set.seed(123) 
 #weightMat <- GENIE3(dataObj$matrix, regulators=dataObj$tfs, verbose=TRUE)
+dataObj <- getActualData(base_dir)
 weightMat <- GENIE3(dataObj$matrix, regulators=dataObj$tfs, nCores=24, verbose=TRUE)
-
 linkList <- getLinkList(weightMat, reportMax=(ncol(weightMat)*2))
 write.table(linkList, file.path(base_dir, "edges_inferred.tsv"), sep="\t", row.names = FALSE, quote = FALSE)
+print(paste0("Saved to:", file.path(base_dir, "edges_inferred.tsv")))
 
