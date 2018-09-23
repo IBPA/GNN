@@ -21,7 +21,7 @@ For **input**, ```directory_path ``` should contain files: ```data.tsv```, ```ge
 ```
 ./prep/run_divide_data.py ./data/dream5/input/ ./data/dream5/s1/ ./data/dream5/s2/
 ./prep/run_GENIE3.R ./data/dream5/s1/
-./prep/run_generate_module_experiments.py ./data/dream5/s1/ ./data/dream5/s2/ data/dream5/s2/experiments/
+./prep/run_generate_module_data.py ./data/dream5/s1/ ./data/dream5/s2/ data/dream5/s2/experiments/
 ./slurm/run_GNN.sh ./data/dream5/s2/experiments/
 ./slurm/aggregate_experiment_results.sh ./data/dream5/s2/experiments/
 ./vis/vis_results.R ./data/dream5/s2/experiments/

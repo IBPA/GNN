@@ -35,6 +35,6 @@ set.seed(123)
 dataObj <- getActualData(base_dir)
 weightMat <- GENIE3(dataObj$matrix, regulators=dataObj$tfs, nCores=24, verbose=TRUE)
 linkList <- getLinkList(weightMat, reportMax=(ncol(weightMat)*2))
-write.table(linkList, file.path(base_dir, "edges_inferred.tsv"), sep="\t", row.names = FALSE, quote = FALSE)
+write.table(linkList, file.path(base_dir, "edges_inferred.tsv"), sep="\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
 print(paste0("Saved to:", file.path(base_dir, "edges_inferred.tsv")))
 
