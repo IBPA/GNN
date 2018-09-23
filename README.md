@@ -15,11 +15,11 @@
 ### Gene Regulatory Network
 Architecture of GNN model is informed by a transcription regulatory network (TRN). When the TRN is unknown, network inference methods such as GENIE3 can be used. To run GENIE3 on a gene expression dataset, run: ```./prep/run_GENIE3.R directory_path```
 
-For **input**, ```directory_path ``` should contain files: ```ge_data.tsv```, ```gene_names.tsv``` and ```tf_names.tsv```. See ```./data/dream5_r1/``` for file formats. The **output** will be stored in ```trn_edges.tsv``
+For **input**, ```directory_path ``` should contain files: ```data.tsv```, ```gene_names.tsv```, ```experiments.tsv``` and ```tf_names.tsv```. See ```./data/dream5_r1/``` for file formats. The **output** will be stored in ```trn_edges.tsv``
 
 ### Real Data Evaluation
 ```
-./prep/divide_data.py ./data/dream5/s0/ ./data/dream5/s1/ ./data/dream5/s2/
+./prep/run_divide_data.py ./data/dream5/input/ ./data/dream5/s1/ ./data/dream5/s2/
 ./prep/run_GENIE3.R ./data/dream5/s1/
 ./prep/run_generate_module_experiments.py ./data/dream5/s1/ ./data/dream5/s2/ data/dream5/s2/experiments/
 ./slurm/run_GNN.sh ./data/dream5/s2/experiments/
