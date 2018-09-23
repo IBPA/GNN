@@ -1,8 +1,8 @@
 #!/usr/bin/env Rscript
 # Gene Regulatory Network Inference using GENIE3
-
 library("GENIE3")
 library("foreach")
+library("fBasics")
 
 getSampleData <- function(){
   exprMatr <- matrix(sample(1:10, 100, replace=TRUE), nrow=20)
