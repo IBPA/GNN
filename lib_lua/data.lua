@@ -185,6 +185,11 @@ end
       self.strTestActualFilename = string.format("%s/folds/actual_%s.csv", strDir, strFoldFilename:sub(1, -5))
       self.strFoldFilename = strFoldFilename
     end
+
+    function CData:pri_GetActualFilename(strPrefix)
+       strPrefix = strPrefix or ""
+       return string.format("%s/folds/%s_actual_%s.csv", self.strDir, strPrefix, self.strFoldFilename:sub(1, -5))
+    end
     
     function CData:savePred(tePred, strPrefix)
       strPrefix = strPrefix or ""
@@ -194,10 +199,11 @@ end
       print("saved preds to " .. self.strTestPredFilename)
     end
     
-    function CData:saveActual()
+    function CData:saveActual(strPrefix)
       local teTargetReordered = data.priGetDataOrigOrder(self.taData.target, self.taNonTFGenes, self.oDepGraph:getNonTFOrders())
-      myUtil.saveTensorAndHeaderToCsvFile(teTargetReordered, self.taNonTFGenes, self.strTestActualFilename)
-      print("saved actuals to " .. self.strTestActualFilename)
+      local strActualFilename = self:pri_GetActualFilename(strPrefix)
+      myUtil.saveTensorAndHeaderToCsvFile(teTargetReordered, self.taNonTFGenes, strActualFilename)
+      print("saved actuals to " .. strActualFilename)
     end
     
   
