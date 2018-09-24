@@ -188,7 +188,7 @@ end
 
     function CData:pri_GetActualFilename(strPrefix)
        strPrefix = strPrefix or ""
-       return string.format("%s/folds/%s_actual_%s.csv", self.strDir, strPrefix, self.strFoldFilename:sub(1, -5))
+       return string.format("%s/folds/%sactual_%s.csv", self.strDir, strPrefix, self.strFoldFilename:sub(1, -5))
     end
     
     function CData:savePred(tePred, strPrefix)

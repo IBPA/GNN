@@ -15,16 +15,16 @@
 ### Gene Regulatory Network
 Architecture of GNN model is informed by a transcription regulatory network (TRN). When the TRN is unknown, network inference methods such as GENIE3 can be used. To run GENIE3 on a gene expression dataset, run: ```./prep/run_GENIE3.R directory_path```
 
-For **input**, ```directory_path ``` should contain files: ```data.tsv```, ```gene_names.tsv```, ```experiments.tsv``` and ```tf_names.tsv```. See ```./data/dream5_r1/``` for file formats. The **output** will be stored in ```trn_edges.tsv``
+For **input**, ```directory_path ``` should contain files: ```data.tsv```, ```gene_names.tsv```, ```experiments.tsv``` and ```tf_names.tsv```. See ```./data/dream5_ecoli/input/``` for file formats. The **output** will be stored in ```edges_inferred.tsv``
 
 ### Real Data Evaluation
 ```
-./prep/run_divide_data.py ./data/dream5/input/ ./data/dream5/s1/ ./data/dream5/s2/
+./prep/run_divide_data.py ./data/dream5_ecoli/input/ ./data/dream5_ecoli/s1/ ./data/dream5_ecoli/s2/
 ./prep/run_GENIE3.R ./data/dream5/s1/
-./prep/run_generate_module_data.py ./data/dream5/s1/ ./data/dream5/s2/ data/dream5/s2/experiments/
-./slurm/run_GNN.sh ./data/dream5/s2/experiments/
-./slurm/aggregate_experiment_results.sh ./data/dream5/s2/experiments/
-./vis/vis_results.R ./data/dream5/s2/experiments/
+./prep/run_generate_module_data.py ./data/dream5_ecoli/s2/edges_inferred.tsv ./data/dream5_ecoli/s1/data_all_unique.tsv data/dream5/modules/
+./slurm/run_GRNN.sh ./data/dream5_ecoli/modules/
+./slurm/aggregate_experiment_results.sh ./data/dream5_ecoli/modules/
+./vis/vis_results.R ./data/dream5/dream5_ecoli/modules/
 ```
 
 

@@ -22,14 +22,16 @@ local mNet = grnn.create(oDepGraph, mDataTrain.taGERanges)
 grnn.train(mNet, mDataTrain.taData)
 local taMinMax = mDataTrain:getMinMaxNonTFs()
 
-print("test")
+print("test:")
 local mDataTest = CData.new(strDir, oDepGraph, nil, isNoise, strFoldFilename, 2)
 local teOutput = grnn.predict(mNet, mDataTest.taData.input, taMinMax)
-
 --print("save debug info")
-local strDebugDir = string.format("%s/grnn_debug/%s/", strDir, strFoldFilename)
-debug_model.saveModelDebug(mNet, mDataTrain, mDataTest, oDepGraph, strDebugDir)
-
+--local strDebugDir = string.format("%s/grnn_debug/%s/", strDir, strFoldFilename)
+--debug_model.saveModelDebug(mNet, mDataTrain, mDataTest, oDepGraph, strDebugDir)
 mDataTest:savePred(teOutput, "grnn_")
 mDataTest:saveActual()
 
+print("train:")
+local teOutput = grnn.predict(mNet, mDataTrain.taData.input, taMinMax)
+mDataTrain:savePred(teOutput, "train_grnn_")
+mDataTrain:saveActual("train_")
