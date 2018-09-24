@@ -7,11 +7,13 @@ mySRun() {
 	rm -f $strFilename
 
 	echo "#!/bin/bash" >> $strFilename
-   echo "pushd $1" >> $strFilename
-   echo "th ~/mygithub/GRNN_Clean/trainPred.lua ../ $2" >> $strFilename
-   echo "popd" >> $strFilename
+	echo "pushd $1" >> $strFilename
+	echo "module load gurobi" >> $strFilename
+	echo "th ~/mygithub/GRNN_Clean/trainPred.lua ../ $2" >> $strFilename
+	echo "popd" >> $strFilename
 	chmod u+x $strFilename
-	echo sbatch -p low -c 2 -n 1 -N 1 -t 300 --job-name=$strFilename $strFilename
+	sbatch -A bc5fp1p -p RM-shared --ntasks-per-node 2 -N 1 -t 7:58:00 --job-name=$strFilename $strFilename
+	#echo sbatch -p low -c 2 -n 1 -N 1 -t 300 --job-name=$strFilename $strFilename
 }
 
 lRunGrnn(){
@@ -25,8 +27,9 @@ lRunGrnn(){
 }
 
 #for baseDir in $HOME/mygithub/grnnPipeline/data/dream5_med2/modules_gnw_a/size-*/
-for baseDir in $HOME/mygithub/GRNN_Clean/data/dream5_ecoli/modules/size-10/
+for baseDir in $HOME/mygithub/GRNN_Clean/data/dream5_ecoli/modules/size-*/
 do
+   #for j in $baseDir/top_edges-[0-9]*_gnw_data/d_1/folds
    for j in $baseDir/top_edges-[0-9]*_gnw_data/d_1/folds
    do
       strFoldDirname=$j
