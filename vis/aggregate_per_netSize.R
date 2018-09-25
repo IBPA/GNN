@@ -1,9 +1,9 @@
 #!/usr/bin/Rscript
 library(reshape)
-source("lib_modelEval.R")
+source("../vis/lib_modelEval.R")
 
 getUniqPrefixes <- function(strDir, prefix, nSize){
-  fnames <- list.files(strDir, pattern = sprintf("%s.*_n%d_f[0-9]*.csv", prefix, nSize),
+  fnames <- list.files(strDir, pattern = sprintf("^%s.*_n%d_f[0-9]*.csv", prefix, nSize),
                        full.names=FALSE)
   prefixes <- lapply(fnames, function(x) unlist(strsplit(x, "_n"))[1])
   return (unique(prefixes))
@@ -17,7 +17,8 @@ dirList <- paste0(list.dirs(path = strDir, full.names = TRUE, recursive = FALSE)
 dataSizeList <- c(10)
 #dataSizeList <- c(10)
 #prefixList <- c("grnn_pred", "biRnn_pred_a", "kmlp_pred_a", "rnn_pred_a", "avg_pred_a")
-prefixList <- c("grnn_pred")
+#prefixList <- c("grnn_pred")
+prefixList <- c("kmlp_pred_a")
 
 df_best_mean <- data.frame(prefix=character(), nDataSize=numeric(), MSE=numeric(), MAE=numeric(), PCC=numeric(), stringsAsFactors=FALSE )
 for(nDataSize in dataSizeList){
