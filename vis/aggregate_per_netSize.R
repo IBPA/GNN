@@ -1,9 +1,9 @@
 #!/usr/bin/Rscript
 library(reshape)
-source("lib_modelEval.R")
+source("../vis/lib_modelEval.R")
 
 getUniqPrefixes <- function(strDir, prefix, nSize){
-  fnames <- list.files(strDir, pattern = sprintf("%s.*_n%d_f[0-9]*.csv", prefix, nSize),
+  fnames <- list.files(strDir, pattern = sprintf("^%s.*_n%d_f[0-9]*.csv", prefix, nSize),
                        full.names=FALSE)
   prefixes <- lapply(fnames, function(x) unlist(strsplit(x, "_n"))[1])
   return (unique(prefixes))
