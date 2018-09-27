@@ -37,7 +37,7 @@ def generate(dir_path):
     df = pd.concat([df1, df2, df3], axis=1)
 
     num_samples_min = 10
-    num_samples_max = 21
+    num_samples_max = 11
     num_samples_step = 10
     num_folds = 5
 

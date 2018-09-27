@@ -62,7 +62,7 @@ def generate_data_prep(input_edges_file, df, output_dir):
 
     return gen_filenames
 
-def generate_modules(edges_file, num_nodes, frac_edges, output_dir, gnw_path):
+def generate_modules(edges_file, num_nodes, frac_edges, output_dir, gnw_path, num_nets_per_size):
     list_top_edges = get_top_edges(edges_file, num_nodes, frac_edges)
     curr_edges_filepath = '{!s}/top_edges.tsv'.format(output_dir)
     save_edges_tsv(list_top_edges, curr_edges_filepath)
@@ -71,7 +71,7 @@ def generate_modules(edges_file, num_nodes, frac_edges, output_dir, gnw_path):
                         min_netsize=num_nodes,
                         max_netsize=num_nodes+1,
                         stepsize=100,
-                        num_nets_per_size=10,
+                        num_nets_per_size=num_nets_per_size,
                         main_netfile_path=curr_edges_filepath,
                         output_prefix = "{!s}/size-".format(output_dir))
 
@@ -86,9 +86,10 @@ def generate_data(input_edges_file, input_data_file, module_files, output_dir):
 
 ########## Function_End ##########
 
-input_edges_file = sys.argv[1] if len(sys.argv) > 1 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/s2/edges_inferred.tsv'.format(os.environ['HOME'])
-input_data_file = sys.argv[2] if len(sys.argv) > 1 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/s1/data_all_unique.tsv'.format(os.environ['HOME'])
-output_dir = sys.argv[3] if len(sys.argv) > 1 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/modules/'.format(os.environ['HOME'])
+input_edges_file = sys.argv[1] if len(sys.argv) > 1 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/b2/edges_inferred.tsv'.format(os.environ['HOME'])
+input_data_file = sys.argv[2] if len(sys.argv) > 2 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/b1/data_all_unique.tsv'.format(os.environ['HOME'])
+output_dir = sys.argv[3] if len(sys.argv) > 3 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/bmodules/'.format(os.environ['HOME'])
+num_nets_per_size = sys.argv[4] if len(sys.argv) > 4 else 10
 gnw_path = '{!s}/mygithub/gnw/gnw-3.1.2b.jar'.format(os.environ['HOME'])
 
 if not os.path.exists(output_dir):
@@ -98,9 +99,9 @@ frac_edges=1.2
 
 # 1) Generate TRN modules
 num_nodes=10
-module_files = generate_modules(input_edges_file, num_nodes, frac_edges, output_dir, gnw_path)
+module_files = generate_modules(input_edges_file, num_nodes, frac_edges, output_dir, gnw_path, num_nets_per_size)
 for num_nodes in range(100, 1100, 100):
-    module_files_curr = generate_modules(input_edges_file, num_nodes, frac_edges, output_dir, gnw_path)
+    module_files_curr = generate_modules(input_edges_file, num_nodes, frac_edges, output_dir, gnw_path, num_nets_per_size)
     module_files.extend(module_files_curr)
 
 # 2) Generate GE data for each module

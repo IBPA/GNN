@@ -137,7 +137,7 @@ df.to_csv(output_data_file, sep='\t', index=False)
 print('saved to: {!s}'.format(output_data_file))
 
 # 2) perform clusterning (e.g. n_clusters=27 )
-n_clusters=27
+n_clusters=11
 idx_picked, idx_remained = get_samples(df, n_clusters)
 
 # 3) build dataset in output_dir1 using one sample from each cluster
