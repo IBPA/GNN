@@ -2,7 +2,7 @@
 getDfDirPrefixSize <- function(strDir, prefix, nSize){
   print(sprintf("%s_n%d_f[0-9]*.csv", prefix, nSize))
   
-  filenames <- list.files(strDir, pattern = sprintf("%s_n%d_f[0-9]*.csv", prefix, nSize),
+  filenames <- list.files(strDir, pattern = sprintf("^%s_n%d_f[0-9]*.csv", prefix, nSize),
                           full.names=TRUE)
   fileInfo <- file.info(filenames)
   if( nrow(fileInfo[fileInfo$size>0,]) < 5){
@@ -17,7 +17,7 @@ getDfDirPrefixSize <- function(strDir, prefix, nSize){
     print("LOOK!!!")
   }
   
-  filenames <- list.files(strDir, pattern = sprintf("actual_n%d_f[0-9]*.csv", nSize),
+  filenames <- list.files(strDir, pattern = sprintf("^actual_n%d_f[0-9]*.csv", nSize),
                           full.names=TRUE)
   datalist <- lapply(filenames, function(x){read.csv(file=x,header=TRUE, sep = "\t")})
   df_actual <- Reduce(function(x,y) {rbind(x,y)}, datalist)
