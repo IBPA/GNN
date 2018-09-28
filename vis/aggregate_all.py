@@ -4,7 +4,7 @@ import os
 import pandas as pd
 
 sizes = [10, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-base_dir = '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/modules/'.format(os.environ['HOME'])
+base_dir = sys.argv[1] if len(sys.argv) > 1 else '{!s}/mygithub/GRNN_Clean/data/dream5_ecoli/expr1/modules_aggr/'.format(os.environ['HOME'])
 
 df=pd.DataFrame(columns=["prefix","MSE","MAE","PCC","nDataSize"])
 for size in sizes:
