@@ -24,7 +24,7 @@ lRun(){
    done
 }
 
-for baseDir in $HOME/mygithub/GRNN_Clean/data/dream5_ecoli/modules/size-*/
+for baseDir in $HOME/mygithub/GRNN_Clean/data/dream5_ecoli/expr1/modules_aggr/size-*/
 do
    for j in $baseDir/top_edges-[0-9]*_gnw_data/d_1/folds
    do

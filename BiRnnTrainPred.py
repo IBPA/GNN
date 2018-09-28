@@ -62,7 +62,7 @@ data_filenames = {"NonTFs": '{!s}/processed_NonTFs.tsv'.format(dir_path),
                   "TFs" : '{!s}/processed_TFs.tsv'.format(dir_path),
                   "KOs" : '{!s}/processed_KO.tsv'.format(dir_path)}
 
-ge_range_dic = data_rw.get_ge_range('{!s}/../../../ge_range.csv'.format(dir_path))
+ge_range_dic = data_rw.get_ge_range('{!s}/../ge_range.csv'.format(dir_path))
 
 if len(sys.argv) <= 3:
     h_params = keras_util.getRnnHyperParameters(max_depth=5, min_alpha=0, max_alpha=5, num_combinations=50)

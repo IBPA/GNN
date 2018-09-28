@@ -1,6 +1,7 @@
 # Gene Regulatory Network (GNN)
 
 ## Dependencies
+* python3 (+ pandas, numpy)
 * [torch7](http://torch.ch/docs/getting-started.html)
 * luarocks install csv
 * luarocks install cephes
