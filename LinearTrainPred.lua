@@ -1,5 +1,5 @@
 -- Given dataset directory, train and predict.
-require('./lib_lua/CSyng.lua')
+require('./lib_lua/CLinear.lua')
 require('./lib_lua/graph.lua')
 require('./lib_lua/data.lua')
 local grnn = require('./lib_lua/grnn.lua')
@@ -16,7 +16,7 @@ local oDepGraph = CDepGraph.new(string.format("%s/../net.dep", strDir))
 local mDataTrain = CData.new(strDir, oDepGraph, nil, isNoise, strFoldFilename, 1)
 
 -- 1) Build Model
-local mNet = grnn.create(CSyng, oDepGraph, mDataTrain.taGERanges)
+local mNet = grnn.create(CLinear, oDepGraph, mDataTrain.taGERanges)
 
 -- 2) Train ToDo: skip k_Fold for now, but do it with an eye on available functionality
 grnn.train(mNet, mDataTrain.taData)
@@ -28,10 +28,10 @@ local teOutput = grnn.predict(mNet, mDataTest.taData.input, taMinMax)
 --print("save debug info")
 --local strDebugDir = string.format("%s/grnn_debug/%s/", strDir, strFoldFilename)
 --debug_model.saveModelDebug(mNet, mDataTrain, mDataTest, oDepGraph, strDebugDir)
-mDataTest:savePred(teOutput, "grnn_")
+mDataTest:savePred(teOutput, "linGrnn_")
 mDataTest:saveActual()
 
 print("train:")
 local teOutput = grnn.predict(mNet, mDataTrain.taData.input, taMinMax)
-mDataTrain:savePred(teOutput, "train_grnn_")
+mDataTrain:savePred(teOutput, "train_linGrnn_")
 mDataTrain:saveActual("train_")

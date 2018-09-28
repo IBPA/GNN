@@ -16,7 +16,7 @@ end
 function CLinear:train(teInput, teTarget)
   local teA = torch.cat(torch.ones(teInput:size(1), 1), teInput)
   local teB = teTarget
-  local teX = torch.gels(teA, teB)
+  local teX = torch.gels(teB, teA)
   self.teTheta:copy(teX)
 end
 

@@ -9,13 +9,13 @@ local testerPool = require('../../MyCommon/testerPool.lua')
 local grnn = {}
 
 do
-  function grnn.create(oDepGraph, taGERanges)
+  function grnn.create(CModel, oDepGraph, taGERanges)
     local mNet = nn.Sequential()
     local taNonTF = oDepGraph:getNonTFs()
     local oParamCache = CParamCache.new()
     
     for __, strGene in pairs(taNonTF) do
-      local mGene = CGene.new(strGene, oDepGraph, taGERanges, oParamCache)
+      local mGene = CGene.new(CModel, strGene, oDepGraph, taGERanges, oParamCache)
       mNet:add(mGene)
     end
     

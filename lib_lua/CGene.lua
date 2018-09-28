@@ -1,5 +1,3 @@
-require('./CLinear.lua')
-require('./CSyng.lua')
 CGene = torch.class('nn.CGene', 'nn.Module')
 
 function getGeneAndTFRanges(taGERanges, strGene, taInputNames)
@@ -19,7 +17,7 @@ function getGeneAndTFRanges(taGERanges, strGene, taInputNames)
   return taMins, taMaxs
 end
 
-function CGene:__init(strGene, oDepGraph, taGERanges, oParamCache)
+function CGene:__init(CModel, strGene, oDepGraph, taGERanges, oParamCache)
   self.strGene = strGene
   self.oDepGraph = oDepGraph
   
@@ -32,8 +30,9 @@ function CGene:__init(strGene, oDepGraph, taGERanges, oParamCache)
   self.taMins, self.taMaxs = getGeneAndTFRanges(taGERanges, strGene, taInputNames)
   self.dBasal = 0
   
+  self.model = CModel.new(#self.taInputIdx, self.taMins, self.taMaxs, oParamCache)
 --  self.model = CLinear.new(#self.taInputIdx)  -- using linear model for now
-  self.model = CSyng.new(#self.taInputIdx, self.taMins, self.taMaxs, oParamCache)
+--  self.model = CSyng.new(#self.taInputIdx, self.taMins, self.taMaxs, oParamCache)
   self.weight = self.model:getParamPointer()
   self.gradWeight = self.model:getGradParamPointer()
   
