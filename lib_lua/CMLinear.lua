@@ -1,7 +1,10 @@
 CMLinear = torch.class('CMLinear')
 -- Description: This Linear module will also include all pairs of multiplicative terms.
 
-function CMLinear:__init(nInputs)
+function CMLinear:__init(nInputs, taMins, taMaxs)
+  self.taMins = taMins
+  self.taMaxs = taMaxs
+
   self.nInputs = nInputs
   self.nMulTerms = (nInputs * (nInputs-1))/2
   self.teTheta = torch.zeros(1, self.nInputs + self.nMulTerms + 1)
@@ -33,6 +36,8 @@ function CMLinear:predict(teInput)
   local teV1 = torch.Tensor(teInputExtended:size(1), 1):fill(self.teTheta[1][1]) -- bias
   local teV2 = self.teTheta:narrow(2, 2, self.teTheta:size(2)-1):t()
   local teOutput = torch.addmm(teV1, teInputExtended, teV2)
+  teOutput:clamp(self.taMins.output, self.taMaxs.output)
+
   return teOutput
 end
 
