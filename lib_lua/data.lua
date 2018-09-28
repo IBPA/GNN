@@ -163,7 +163,7 @@ end
   end
   
   function loadGERanges(strDir)
-    local strFilename = string.format("%s/../../../ge_range.csv", strDir)
+    local strFilename = string.format("%s/../ge_range.csv", strDir)
     local taLoadParams = {header=true, separator=","}
     local taRanges = {}
     local f = csv.open(strFilename, taLoadParams)
