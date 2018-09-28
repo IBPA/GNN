@@ -45,9 +45,19 @@ function CMLinear:train(teInput, teTarget)
   local teInputExtended = self:pri_extendWithMulTerms(teInput)
   local teA = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
   local teB = teTarget
-  local teX = torch.gels(teB, teA)
 
-  self.teTheta:copy(teX)
+  local teX
+  function fuWrapGels()
+    teX = torch.gels(teB, teA)
+  end
+
+  if pcall(fuWrapGels) then
+     self.teTheta:copy(teX)
+  else
+     print("Error in gels call!!")
+     self.teTheta:fill(0)
+     self.teTheta[1][1] = torch.mean(teTarget)
+  end
 end
 
 function CMLinear:getParamPointer()
