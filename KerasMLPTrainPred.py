@@ -62,7 +62,7 @@ data_filenames = {"NonTFs": '{!s}/processed_NonTFs.tsv'.format(dir_path),
 ge_range_dic = data_rw.get_ge_range('{!s}/../ge_range.csv'.format(dir_path))
 
 if len(sys.argv) <= 3:
-    h_params = keras_util.getMLPHyperParameters(min_nodes=5, max_nodes=50, min_alpha=0, max_alpha=5, num_combinations=50)
+    h_params = keras_util.loadMLPHyperParameters(dir_path)
     for row in h_params:
         alpha = row[0]
         mlp_layers_config = row[1]

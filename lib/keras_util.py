@@ -1,5 +1,6 @@
 #keras_util.py
 import keras
+import json
 from keras.callbacks import EarlyStopping
 from keras.layers import Lambda
 import numpy as np
@@ -88,6 +89,13 @@ def getLassoHyperParameters(min_alpha, max_alpha, num_combinations):
     for i in range(0, num_combinations):
         alpha = random.uniform(min_alpha, max_alpha)
         h_list.append([alpha, []])
+    return h_list
+
+def loadMLPHyperParameters(dir_path):
+    filename = "{!s}/../../../hparam_kmlp.json".format(dir_path)
+    with open(filename, 'r') as fHandle:
+        h_list = json.load(fHandle)
+
     return h_list
 
 def apply_range(model, ge_range_all, output_cols):
