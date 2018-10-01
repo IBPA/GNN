@@ -172,6 +172,10 @@ end
       for fields in f:lines() do
         taRanges[fields.gene] = { min=tonumber(fields.min), max=tonumber(fields.max) }
       end
+      print(string.format("Loaded %s", strFilename))
+    else
+      print(string.format("Not found: %s. Hence assuming range [0, 1]", strFilename))
+      taRanges = nil
     end
 
     return taRanges
