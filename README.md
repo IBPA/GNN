@@ -1,4 +1,4 @@
-# Gene Regulatory Network (GNN)
+# Gene Neural Network (GNN)
 
 ## Dependencies
 * python3 (+ pandas, numpy)
