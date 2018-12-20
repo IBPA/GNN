@@ -1,32 +1,40 @@
-# Gene Neural Network (GNN)
+### What is GNN?
+Genetic Neural Network (GNN) is an artificial neural network for predicting genome-wide gene expression given gene knockouts and master regulator perturbations. In its core, the GNN maps existing gene regulatory information in its architecture and it uses cell nodes that have been specifically designed to capture the dependencies and non-linear dynamics that exist in gene networks. These two key features make the GNN architecture capable to capture complex relationships without the need of large training datasets.
 
-## Dependencies
-* python3 (+ pandas, numpy)
-* [torch7](http://torch.ch/docs/getting-started.html)
-* luarocks install csv
-* luarocks install cephes
-* git clone: [MyCommon](https://github.com/ameenetemady/MyCommon)
-* git clone: [torch-autograd](https://github.com/ameenetemady/torch-autograd)
-* cd torch-autograd; luarocks make autograd-scm-1.rockspec
-* module load gurobi
-* git clone [gurobi.torch](https://github.com/bamos/gurobi.torch)
-* cd gurobi.torch; luarocks make gurobi-scm-1.rockspec
-* module load gurobi
+### Dependencies
++ **Operating Systems**: This code base has been verified on *Ubuntu* 18.04, and *MacOS Sierra* 10.12.6
++ **Programming Languages**: *python* (version >= 3.4) and *lua* (version = 5.1)
++ **Libraries**: *GUROBI* (version >= 6.5), *Torch7*, *Keras*, *TensorFlow* and *pandas*
 
-### Gene Regulatory Network
-Architecture of GNN model is informed by a transcription regulatory network (TRN). When the TRN is unknown, network inference methods such as GENIE3 can be used. To run GENIE3 on a gene expression dataset, run: ```./prep/run_GENIE3.R directory_path```
+### Installation
+Follow installation steps for details.
 
-For **input**, ```directory_path ``` should contain files: ```data.tsv```, ```gene_names.tsv```, ```experiments.tsv``` and ```tf_names.tsv```. See ```./data/dream5_ecoli/input/``` for file formats. The **output** will be stored in ```edges_inferred.tsv``
+### Running
+* Step1: prepare a directory containing your input files (with exact names):
+	* ``` net.dep ```
+	* ``` ge_range.csv ```
+	* ``` data_KO.tsv ```
+	* ``` data_NonMR.tsv ```
+	* ``` data_MR.tsv ```
+* Step2: identify filename containing sample ids for training and test sets (call we call this train_test_filename). For stratified sampling and 5-fold cross-validation data, run ```prep/run_stratify.py directory_name```. This will generate stratified datasets with different sizes (n=10, 20, ..., 100). For each size, it will generate train and test in 5-folds. The files will be saved under ```directory_name/folds``` with names such as ```n10_f2.txt``` for size=10 and fold_id=2. The first row contains the indexes for training set and second row corresponds to the test set.
+* Step3: change to ```directory_name``` and run ``` th train_test_filename```
 
-### Real Data Evaluation
-```
-./prep/run_divide_data.py ./data/dream5_ecoli/input/ ./data/dream5_ecoli/s1/ ./data/dream5_ecoli/s2/
-./prep/run_GENIE3.R ./data/dream5/s1/
-./prep/run_generate_module_data.py ./data/dream5_ecoli/s2/edges_inferred.tsv ./data/dream5_ecoli/s1/data_all_unique.tsv data/dream5/modules/
-./slurm/run_GRNN.sh ./data/dream5_ecoli/modules/
-./slurm/aggregate_experiment_results.sh ./data/dream5_ecoli/modules/
-./vis/vis_results.R ./data/dream5/dream5_ecoli/modules/
-```
+Predictions will be saved under ```grnn_pred_train_test_filename.csv```
+
+### Support
+For any questions contact Ameen Eetemadi (eetemadi@ucdavis.edu).
+
+### Citation
+Eetemadi A and Tagkopoulos I. Genetic Neural Networks: An artificial neural network architecture for capturing gene expression relationships. **Bioinformatics**. 2018. [\[link\]](https://doi.org/10.1093/bioinformatics/bty945)
+
+### Licence
+See the [LICENSE](./LICENSE) file for license rights and limitations (Apache2.0).
+
+### Acknowledgement
+This work was supported by grants from National Science Foundation (1516695, 1743101 and 1254205).
+
+
+
 
 
 
