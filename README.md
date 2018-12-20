@@ -10,16 +10,16 @@ Genetic Neural Network (GNN) is an artificial neural network for predicting geno
 Follow installation steps for details.
 
 ### Running
-* Step1: prepare a directory containing your input files (with exact names):
+* **Step1**: prepare a directory containing your input files (with exact names):
 	* ``` net.dep ```
 	* ``` ge_range.csv ```
 	* ``` data_KO.tsv ```
 	* ``` data_NonMR.tsv ```
 	* ``` data_MR.tsv ```
-* Step2: identify filename containing sample ids for training and test sets (call we call this train_test_filename). For stratified sampling and 5-fold cross-validation data, run ```prep/run_stratify.py directory_name```. This will generate stratified datasets with different sizes (n=10, 20, ..., 100). For each size, it will generate train and test in 5-folds. The files will be saved under ```directory_name/folds``` with names such as ```n10_f2.txt``` for size=10 and fold_id=2. The first row contains the indexes for training set and second row corresponds to the test set.
-* Step3: change to ```directory_name``` and run ``` th train_test_filename```
+* **Step2**: identify ```train_test_filename``` containing comma separated sample ids for training (first row) and test (second row) sets. To generate using stratified sampling and 5-fold cross-validation follow instructions [here](doc/data_preparation.md#stratified-sampling).
+* **Step3**: run ```th trainPred.lua directory_name train_test_filename```
 
-Predictions will be saved under ```grnn_pred_train_test_filename.csv```
+Predictions will be saved as ```grnn_pred_[train_test_filename].csv```
 
 ### Support
 For any questions contact Ameen Eetemadi (eetemadi@ucdavis.edu).
