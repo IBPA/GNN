@@ -7,7 +7,7 @@ Genetic Neural Network (GNN) is an artificial neural network for predicting geno
 + **Libraries**: *GUROBI* (version >= 6.5), *Torch7*, *Keras*, *TensorFlow* and *pandas*
 
 ### Installation
-Follow installation steps for details.
+Follow [installation steps](doc/installation.md) for details.
 
 ### Running
 * **Step1**: prepare a directory containing your input files (with exact names):
