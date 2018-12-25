@@ -23,4 +23,6 @@ To run GNN successfully, ensure following dependencies are installed.
 	* ```pip3 install numpy```
 	* ```pip3 install keras```
 	* ```pip3 install tensorflow```
-* **R:** We use R (version 3.4 or higher) for visualization of results. Follow [instructions here](https://www.r-project.org/) to install R if don't already have it. To install necessary R packages run the following using R: ```install.packages(c("ggplot2","stringr", "dplyr", "reshape2"))```
+* **R:** We use R (version 3.4 or higher) for running GENIE3 and visualization of results. Follow [instructions here](https://www.r-project.org/) to install R if don't already have it. To install necessary R packages run the following using R:
+	* ```install.packages(c("ggplot2","stringr", "dplyr", "tidyverse", "reshape2", "BiocManager"))```
+	* ```BiocManager::install("GENIE3")```
