@@ -50,8 +50,9 @@ def run_net_inference(dataset_filename, model_dir):
 
 def get_mr_scores(net_filename):
     df = pd.read_csv(net_filename, sep="\t")
+    if (len(df.columns) == 2):
+        df['weight'] = float(1.0)
     df.columns = ['src', 'dst', 'weight']
-
     df_avg_out = pd.DataFrame(df.groupby(['src'], as_index=False).mean())
 
     return df_avg_out
@@ -111,7 +112,8 @@ if not os.path.exists(command_args.model_dir):
     os.makedirs(command_args.model_dir)
 
 # 1) generate net.tsv if not given (GENIE3)
-if command_args.net == None:
+net_filename = command_args.net
+if net_filename == None:
     net_filename = run_net_inference(command_args.dataset, command_args.model_dir)
 
 # 2) generate net.dep and identify MR genes (save into "model_dir/MR_genes.csv")

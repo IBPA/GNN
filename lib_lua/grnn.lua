@@ -56,7 +56,7 @@ do
     print("grnn.train, end")
   end
   
-  function grnn.predict(mNet, input, taMinMax)
+  function grnn.predict(mNet, input)
     --mNet:add(nn.CMultiClamp(taMinMax.teMins, taMinMax.teMaxs))
     teOutput = mNet:forward(input)
     return teOutput

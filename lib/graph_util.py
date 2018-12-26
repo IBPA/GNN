@@ -192,7 +192,8 @@ class DirGraphReal:
             self.graph_edges = list(tsv_reader)
         
         for edge in self.graph_edges:
-            edge.remove(edge[2])
+            if len(edge) == 3:
+                edge.remove(edge[2])
 
     def get_mr(self):
         return self.mr

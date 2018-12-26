@@ -143,9 +143,12 @@ end
     local teInputData = data.priGetDataDepOrder(taTFData.teData, taTFData.taGenes, oDepGraph:getTFOrders())
     
     -- 2) Load Target Data
-    local taNonTFData = data.priGetData(strFilenameNonTF)
-    self.taNonTFGenes = taNonTFData.taGenes
-    local teTargetData = data.priGetDataDepOrder(taNonTFData.teData, taNonTFData.taGenes, oDepGraph:getNonTFOrders())
+    local teTargetData = nil
+    if strFilenameNonTF ~= nil then
+      local taNonTFData = data.priGetData(strFilenameNonTF)
+      self.taNonTFGenes = taNonTFData.taGenes
+      teTargetData = data.priGetDataDepOrder(taNonTFData.teData, taNonTFData.taGenes, oDepGraph:getNonTFOrders())
+    end
     
     -- 3) Load KO Data
     local taKOData = data.priGetData(strFilenameKO)
