@@ -12,9 +12,12 @@ def filter_dic(m_dic, nodes):
     return m_dic_f
 
 class OutWImpact:
-    def __init__(self, filename):
+    def __init__(self, filename = None, df_input = None):
         self.impact_dic = {}
-        df = pd.read_csv(filename, sep="\t")
+        df = df_input
+        if df is None:
+            df = pd.read_csv(filename, sep="\t")
+
         for index, row in df.iterrows():
             self.impact_dic[row['src']]= row['weight']
 

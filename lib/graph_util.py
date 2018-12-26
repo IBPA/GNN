@@ -142,11 +142,11 @@ class DepGraph:
         return graph_list
 
 class DirGraphReal:
-    def __init__(self, graph_tsv_filepath, impact_m):
+    def __init__(self, graph_tsv_filepath, impact_m, has_header = False):
         if not graph_tsv_filepath:
             raise Exception("need .tsv file")
         
-        self.load_from_tsv(graph_tsv_filepath)
+        self.load_from_tsv(graph_tsv_filepath, has_header)
 
         # 1) get list of genes with no dep
         self.dep_graph = DepGraph(self.graph_edges)
@@ -181,12 +181,14 @@ class DirGraphReal:
     def __get_sub_dic(self, dic_in, nodes):
         return {k: dic_in[k] for k in dic_in.keys() & nodes}
 
-    def load_from_tsv(self, filepath):
+    def load_from_tsv(self, filepath, has_header = False):
         """ Load graph from ".tsv" file
         """
 
         with open(filepath, "r") as f:
             tsv_reader = csv.reader(f, delimiter = "\t", skipinitialspace=True)
+            if has_header:
+                next(tsv_reader, None)
             self.graph_edges = list(tsv_reader)
         
         for edge in self.graph_edges:
