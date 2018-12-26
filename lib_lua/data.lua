@@ -130,9 +130,13 @@ end
     return {taGenes = taGenes, teData = teData}
   end
   
-  function CData:priLoad(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId)
-    local strFilenameTF, strFilenameNonTF, strFilenameKO, strFilenameStratifiedIds = data.priGetFilenames(strDir, isNoise, strFoldFilename)
-    
+  function CData:priLoad(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId, fuGetFilenames)
+    if fuGetFilenames == nil then
+      fuGetFilenames = data.priGetFilenames
+    end
+
+    local strFilenameTF, strFilenameNonTF, strFilenameKO, strFilenameStratifiedIds = fuGetFilenames(strDir, isNoise, strFoldFilename)
+
     -- 1) Load Input Data
     local taTFData = data.priGetData(strFilenameTF)
     taTFData = data.priFilterExtraTFs(taTFData, oDepGraph.taAll)
@@ -150,7 +154,7 @@ end
     -- 4) Extract a subsample (using dMinDist)
     if dMinDist then
       teInputData, teKOData, teTargetData = data.pri_getBalancedSample(teInputData, teKOData, teTargetData, dMinDist)
-    else
+    elseif strFilenameStratifiedIds then
       local teIdx = dataLoad.getIdsFromRow(strFilenameStratifiedIds, nStratifiedRowId)
       teInputData, teKOData, teTargetData = data.pri_getStratSamples(teInputData, teKOData, teTargetData, teIdx )
     end
@@ -181,13 +185,17 @@ end
     return taRanges
   end
 
-    function CData:__init(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId)
-      self.taData = self:priLoad(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId)
+    function CData:__init(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId, fuGetFilenames)
+      self.taData = self:priLoad(strDir, oDepGraph, dMinDist, isNoise, strFoldFilename, nStratifiedRowId, fuGetFilenames)
       self.taGERanges = loadGERanges(strDir)
       self.oDepGraph = oDepGraph
       self.strDir = strDir
-      self.strTestActualFilename = string.format("%s/folds/actual_%s.csv", strDir, strFoldFilename:sub(1, -5))
-      self.strFoldFilename = strFoldFilename
+
+      if strFoldFilename ~= nil then
+        self.strTestActualFilename = string.format("%s/folds/actual_%s.csv", strDir, strFoldFilename:sub(1, -5))
+        self.strFoldFilename = strFoldFilename
+      end
+      
     end
 
     function CData:pri_GetActualFilename(strPrefix)

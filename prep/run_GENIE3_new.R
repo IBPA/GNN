@@ -20,7 +20,7 @@ df <- read.csv(args$input, header = TRUE)
 df$KO <- NULL # remove KO column
 ge_mat <- data.matrix(t(df))
 net_weights <- GENIE3(ge_mat, nCores=2, verbose=TRUE)
-net_edges <- getLinkList(net_weights, reportMax=(ncol(net_weights)*2))
+net_edges <- getLinkList(net_weights, reportMax=(ncol(net_weights)*2.25)) # The cutt-off of 2.25 corresponds to what's used in GENIE3 article for some benchmarks.
 
 write.table(net_edges, args$output, row.names=FALSE, quote=FALSE, sep="\t")
 sprintf("save inferred net into '%s'", args$output)
