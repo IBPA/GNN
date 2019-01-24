@@ -1,3 +1,5 @@
+--[[ Description: Utility functions used for nn performance evaluation.
+]]
 require 'nn'
 
 do

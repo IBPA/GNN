@@ -1,3 +1,5 @@
+""" Utility functions and classes for calculating impact value of MR genes """
+
 import csv
 import pandas as pd
 

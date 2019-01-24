@@ -1,3 +1,5 @@
+--[[ Description: Utility functions used for debugging.
+]]
 local myUtil = myUtil or require('./common_util.lua')
 local debug_model = {}
 

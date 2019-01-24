@@ -1,4 +1,7 @@
--- Load GNN model and predict
+--[[ Description:  Load GNN model and predict 
+    Arg1: base directory name (containing trained_GNN.model as well as input files input_MR.tsv and input_KO.tsv).
+    Arg2: output filename to write predictions.
+]]
 
 require('./lib_lua/CSyng.lua')
 require('./lib_lua/graph.lua')

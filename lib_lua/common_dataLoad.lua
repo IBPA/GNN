@@ -1,3 +1,6 @@
+--[[ Description: Utility functions used for loading data.
+]]
+
 local csv = csv or require("csv")
 local myUtil = myUtil or require('./common_util.lua')
 

@@ -1,3 +1,5 @@
+--[[ Description: Tensor/Table Utility functions.
+]]
 require "cephes"
 do
   local myUtil = {}

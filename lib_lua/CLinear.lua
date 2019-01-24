@@ -1,3 +1,6 @@
+--[[ Description: CLinear class implements linear GNN module without multiplicative terms.
+]]
+
 CLinear = torch.class('CLinear')
 
 function CLinear:__init(nInputs)

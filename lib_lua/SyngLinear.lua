@@ -1,3 +1,6 @@
+--[[ Description: Utility functions to train the activation function of Linear GNN. 
+]]
+
 local autograd = require 'autograd'
 local gurobiW = require('./gurobiWrap.lua')
 

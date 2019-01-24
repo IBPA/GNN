@@ -1,3 +1,6 @@
+--[[ Description: Utility functions to create and train full GNN network given data, network file and GE ranges. 
+]]
+
 require 'nn'
 require('./CGene.lua')
 require('./CGeneDataTrim.lua')

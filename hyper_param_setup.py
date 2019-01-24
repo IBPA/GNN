@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+""" Generate hyper-parameters for MLP and save 'in hparam_kmlp.json'
+   Arg1: base directory name.
+"""
 
 import os, sys, csv
 import json

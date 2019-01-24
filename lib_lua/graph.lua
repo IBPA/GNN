@@ -1,3 +1,6 @@
+--[[ Description: CDepGraph class loads graph from .dep and performs relevent functions to construct GNN nodes in appropriate order.
+]]
+
 CDepGraph = torch.class('CDepGraph')
 
 function CDepGraph:__init(strDepFilename)

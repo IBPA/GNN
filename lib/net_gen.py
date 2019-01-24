@@ -1,3 +1,5 @@
+""" Utility functions for generating network modules of various sizes from given ".tsv" files """
+
 import os, glob, sys
 import subprocess
 import toposort

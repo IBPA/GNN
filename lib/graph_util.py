@@ -2,7 +2,6 @@ import os,sys
 import csv
 from toposort import toposort, toposort_flatten
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-import lib.ge_compendium as ge_compendium
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 

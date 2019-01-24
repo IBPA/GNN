@@ -1,5 +1,7 @@
+--[[ Description: CLinear class implements linear GNN module with multiplicative terms.
+]]
+
 CMLinear = torch.class('CMLinear')
--- Description: This Linear module will also include all pairs of multiplicative terms.
 
 function CMLinear:__init(nInputs, taMins, taMaxs)
   self.taMins = taMins

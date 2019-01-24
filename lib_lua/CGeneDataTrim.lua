@@ -1,4 +1,6 @@
--- CGeneDataTrim: extra data accumulated by sequence of CGene modules
+ --[[ Description: CGeneDataTrim class trims extra data accumulated by sequence of CGene modules.
+  For example expression of MR genes are forwarded to subsequent layers but not needed at the last layer.
+]]
 CGeneDataTrim = torch.class('nn.CGeneDataTrim', 'nn.Module')
 
 function CGeneDataTrim:__init(oDepGraph)

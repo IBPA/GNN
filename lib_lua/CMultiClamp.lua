@@ -1,3 +1,6 @@
+--[[ Description: CMultiClamp, clamps output of GNN cells to corresponding ranges based on initial ranges given.
+]]
+
 CMultiClamp = torch.class('nn.CMultiClamp', 'nn.Module')
 
 function CMultiClamp:__init(teMins, teMaxs)

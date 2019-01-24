@@ -1,3 +1,6 @@
+--[[ Description: Utility functions to wrap GUROBI for GNN's usage of linear programming. 
+]]
+
 local gurobi = require 'gurobi'
 do
 	local gurobiWrap = {}

@@ -1,3 +1,5 @@
+""" Utility functions for generating stratified datasets in different sizes and folds. """
+
 import os
 import sys
 import csv

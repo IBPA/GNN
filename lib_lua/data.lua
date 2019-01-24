@@ -1,3 +1,6 @@
+--[[ Description: Implements CData class for data processing (load/save).
+]]
+
 local dataLoad = dataLoad or require('./common_dataLoad.lua')
 local myUtil = myUtil or require('./common_util.lua')
 local csv = csv or require("csv")

@@ -1,3 +1,6 @@
+--[[ Description: CSyng class implements inner part of GNN cell (after TFs are identified)).
+]]
+
 local autograd = require 'autograd'
 CSyng = torch.class('CSyng')
 local Syng = require('./SyngV7.lua')

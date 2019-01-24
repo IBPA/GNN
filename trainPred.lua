@@ -1,4 +1,8 @@
--- Given dataset directory, train and predict.
+--[[ Description: Train  GNN and test
+  Arg1: base directory name for data files.
+  Arg2: file name containing fold information (first row training indexes, second row test indexes)
+]]
+
 require('./lib_lua/CSyng.lua')
 require('./lib_lua/graph.lua')
 require('./lib_lua/data.lua')

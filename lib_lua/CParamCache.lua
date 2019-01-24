@@ -1,3 +1,5 @@
+--[[ Description: CParamCache class used for caching nn information (debugging purposes only).
+]]
 CParamCache = torch.class('CParamCache')
 
 function CParamCache:__init()

@@ -1,4 +1,5 @@
-#keras_util.py
+""" Shared utility functions for keras interaction. """
+
 import keras
 import json
 from keras.callbacks import EarlyStopping

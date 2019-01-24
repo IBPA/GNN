@@ -1,3 +1,6 @@
+--[[ Description: CGene class represents a GNN cell (i.e. GNN layer)
+]]
+
 CGene = torch.class('nn.CGene', 'nn.Module')
 
 function getGeneAndTFRanges(taGERanges, strGene, taInputNames)

@@ -1,4 +1,7 @@
--- Build and train GNN model
+--[[ Description:  Build and train GNN model 
+    Arg1: base directory name (containing net.dep, train_MR.tsv, train_NMR.tsv and train_KO.tsv).
+    The output trained_GNN.model will be also saved Arg1 directory.
+]]
 
 require('./lib_lua/CSyng.lua')
 require('./lib_lua/graph.lua')

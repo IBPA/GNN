@@ -1,3 +1,5 @@
+""" Utility functions used for generating (i.e. exracting) GE data corresponding to a .dep  network file """
+
 import os
 import sys
 import shutil

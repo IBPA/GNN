@@ -1,3 +1,6 @@
+--[[ Description: Utility functions for training GNN. 
+]]
+
 require 'nn'
 require 'optim'
 local myUtil = myUtil or require('./common_util.lua')

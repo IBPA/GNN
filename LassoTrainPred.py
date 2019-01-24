@@ -1,3 +1,8 @@
+""" Train Lasso and test.
+   Arg1: base directory name for data files.
+   Arg2: file name containing fold information (first row training indexes, second row test indexes)
+"""
+
 import os
 import sys
 import csv
