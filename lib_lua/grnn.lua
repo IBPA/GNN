@@ -4,7 +4,7 @@ require('./CGeneDataTrim.lua')
 require('./CMultiClamp.lua')
 require('./CParamCache.lua')
 local trainerPool = require('./grnnTrainerPool.lua')
-local testerPool = require('../../MyCommon/testerPool.lua')
+local testerPool = require('./common_testerPool.lua')
 
 local grnn = {}
 

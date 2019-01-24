@@ -1,4 +1,4 @@
-local myUtil = myUtil or require('../../MyCommon/util.lua')
+local myUtil = myUtil or require('./common_util.lua')
 local debug_model = {}
 
 do

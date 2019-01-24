@@ -4,7 +4,7 @@ require('./lib_lua/CSyng.lua')
 require('./lib_lua/graph.lua')
 require('./lib_lua/data.lua')
 local grnn = require('./lib_lua/grnn.lua')
-local myUtil = myUtil or require('../../MyCommon/util.lua')
+local myUtil = myUtil or require('./lib_lua/common_util.lua')
 
 function fuGetFilenames(strDir)
     local strFilenameTF = string.format("%s/input_MR.tsv", strDir)

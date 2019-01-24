@@ -1,5 +1,5 @@
-local dataLoad = dataLoad or require('../../MyCommon/dataLoad.lua')
-local myUtil = myUtil or require('../../MyCommon/util.lua')
+local dataLoad = dataLoad or require('./common_dataLoad.lua')
+local myUtil = myUtil or require('./common_util.lua')
 local csv = csv or require("csv")
 
 data = {}
