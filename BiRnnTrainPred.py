@@ -77,3 +77,5 @@ else: #ToDo: should load config from a file instead
     run(data_filenames, fold_filename, alpha=1.2, nDepth=3, ge_range_all=ge_range_dic) #best architecture for app24_chemotaxis (based on d_1:d_10)
 
 keras.backend.clear_session()
+
+# End
