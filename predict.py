@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 """ Predict GE using trained GNN model """
 
 import argparse
