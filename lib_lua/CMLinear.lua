@@ -45,21 +45,39 @@ end
 
 function CMLinear:train(teInput, teTarget)
   local teInputExtended = self:pri_extendWithMulTerms(teInput)
-  local teA = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
-  local teB = teTarget
 
-  local teX
-  function fuWrapGels()
-    teX = torch.gels(teB, teA)
-  end
+  
+  local Z = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
+  local ZT = Z:transpose(1, 2)
+  local y = teTarget
 
-  if pcall(fuWrapGels) then
-     self.teTheta:copy(teX)
-  else
-     print("Error in gels call!!")
-     self.teTheta:fill(0)
-     self.teTheta[1][1] = torch.mean(teTarget)
-  end
+  -- todo: k-fold cross validation on lambda
+  local lambda = 0.8
+  local ZTZ = torch.mm(ZT, Z)
+  local lambdaIp = torch.diag(lambda * torch.ones(ZT:size(1)))
+  local ZTZIPinv = torch.inverse(ZTZ + lambdaIp)
+  local ZTY = torch.mm(ZTZIPinv, ZT)
+  local beta = torch.mm(ZTY, y) --torch.mv does not work, but Z_cydA is 20x4, y_cydA is fit in 20x1.
+  self.teTheta:copy(beta)
+
+  -- todo: simpilfy the equation
+
+--   local teA = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
+--   local teB = teTarget
+--   -- print(teA:size(1), teA:size(2))
+
+--   local teX
+--   function fuWrapGels()
+--     teX = torch.gels(teB, teA)
+--   end
+
+--   if pcall(fuWrapGels) then
+--      self.teTheta:copy(teX)
+--   else
+--      print("Error in gels call!!")
+--      self.teTheta:fill(0)
+--      self.teTheta[1][1] = torch.mean(teTarget)
+--   end
 end
 
 function CMLinear:getParamPointer()
