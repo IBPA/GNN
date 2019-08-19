@@ -1,5 +1,7 @@
 --[[ Description: CLinear class implements linear GNN module with multiplicative terms.
 ]]
+require 'math'
+require('./common_dataLoad.lua')
 
 CMLinear = torch.class('CMLinear')
 
@@ -43,41 +45,56 @@ function CMLinear:predict(teInput)
   return teOutput
 end
 
-function CMLinear:train(teInput, teTarget)
-  local teInputExtended = self:pri_extendWithMulTerms(teInput)
+function getMSE(teX, teTheta, teY)
+	local mSE = (teY - torch.mm(teX, teTheta)):pow(2):mean()
+	return mSE
+end
 
-  
+function getBeta(l, teInput, teTarget)
+  local teInputExtended = self:pri_extendWithMulTerms(teInput) 
   local Z = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
   local ZT = Z:transpose(1, 2)
   local y = teTarget
+  local lambda = l
+  -- local ZTZ = torch.mm(ZT, Z)
+  -- local lambdaIp = torch.diag(lambda * torch.ones(ZT:size(1)))
+  -- local ZTZIPinv = torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1))))
+  -- local ZTY = torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1)))), ZT)
+  local beta = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1)))), ZT), y)
+  return beta
+end
 
-  -- todo: k-fold cross validation on lambda
-  local lambda = 0.8
-  local ZTZ = torch.mm(ZT, Z)
-  local lambdaIp = torch.diag(lambda * torch.ones(ZT:size(1)))
-  local ZTZIPinv = torch.inverse(ZTZ + lambdaIp)
-  local ZTY = torch.mm(ZTZIPinv, ZT)
-  local beta = torch.mm(ZTY, y) --torch.mv does not work, but Z_cydA is 20x4, y_cydA is fit in 20x1.
-  self.teTheta:copy(beta)
+function getCVErr(l, teX, teTarget, kfold)
+	local nFoldModMax = kfold - 1
+	local totalError = 0
+	for foldID = 0, nFoldModMax do
+		taTrain, taTest = dataload.loadTrainTestForCV(taParam, foldID)
+		teBeta = getBeta(l, taTrain[1], teTarget[2])
+		totalError = totalError + getMSE(taTest[1], teBeta, taTest[2])
+	end
+	totalError = totalError / kfold
+	return totalError
+end
 
-  -- todo: simpilfy the equation
 
---   local teA = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
---   local teB = teTarget
---   -- print(teA:size(1), teA:size(2))
+function CMLinear:train(teInput, teTarget)
 
---   local teX
---   function fuWrapGels()
---     teX = torch.gels(teB, teA)
---   end
+	local bestErr = math.huge
+	local bestL = 0
 
---   if pcall(fuWrapGels) then
---      self.teTheta:copy(teX)
---   else
---      print("Error in gels call!!")
---      self.teTheta:fill(0)
---      self.teTheta[1][1] = torch.mean(teTarget)
---   end
+  	-- k-fold cross validation on lambda(0, 2, 10)
+  	local tempKFold = 5
+	for l = 0, 2, 10 do
+		tempErr = getCVErr(l, teX, teTarget, tempKFold)
+		if tempErr < bestErr then
+			bestErr = tempErr
+			bestL = l
+		end
+		-- update if needed
+	end
+	local teBestTheta = getBeta(bestL, teX, teTarget)
+	self.teTheta:copy(teBestTheta)
+
 end
 
 function CMLinear:getParamPointer()
