@@ -1,11 +1,12 @@
 --[[ Description: CLinear class implements linear GNN module with multiplicative terms.
 ]]
 
-CMLinear = torch.class('CMLinear')
+CMLinearL2 = torch.class('CMLinearL2')
 
-function CMLinear:__init(nInputs, taMins, taMaxs)
+function CMLinearL2:__init(nInputs, taMins, taMaxs, taLambda)
   self.taMins = taMins
   self.taMaxs = taMaxs
+  self.talambda = taLambda
 
   self.nInputs = nInputs
   self.nMulTerms = (nInputs * (nInputs-1))/2
@@ -13,7 +14,7 @@ function CMLinear:__init(nInputs, taMins, taMaxs)
   self.teGradTheta = torch.zeros(self.teTheta:size())
 end
 
-function CMLinear:pri_extendWithMulTerms(teInput)
+function CMLinearL2:pri_extendWithMulTerms(teInput)
   local nD = teInput:size(2)
   if nD < 2 then
     return teInput
@@ -33,7 +34,7 @@ function CMLinear:pri_extendWithMulTerms(teInput)
   return torch.cat({teInput, teMulTerms}, 2)
 end
 
-function CMLinear:predict(teInput)
+function CMLinearL2:predict(teInput)
   local teInputExtended = self:pri_extendWithMulTerms(teInput)
   local teV1 = torch.Tensor(teInputExtended:size(1), 1):fill(self.teTheta[1][1]) -- bias
   local teV2 = self.teTheta:narrow(2, 2, self.teTheta:size(2)-1):t()
@@ -43,14 +44,16 @@ function CMLinear:predict(teInput)
   return teOutput
 end
 
-function CMLinear:train(teInput, teTarget)
+function CMLinearL2:train(teInput, teTarget)
   local teInputExtended = self:pri_extendWithMulTerms(teInput)
-  local teA = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
-  local teB = teTarget
+  local Z = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
+  local ZT = Z:transpose(1, 2)
+  local y = teTarget
+
 
   local teX
   function fuWrapGels()
-    teX = torch.gels(teB, teA)
+    teX = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(self.talambda * torch.ones(ZT:size(1)))), ZT), y)
   end
 
   if pcall(fuWrapGels) then
@@ -62,10 +65,10 @@ function CMLinear:train(teInput, teTarget)
   end
 end
 
-function CMLinear:getParamPointer()
+function CMLinearL2:getParamPointer()
   return self.teTheta
 end
 
-function CMLinear:getGradParamPointer()
+function CMLinearL2:getGradParamPointer()
   return self.teGradTheta
 end

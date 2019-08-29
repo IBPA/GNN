@@ -195,8 +195,9 @@ print(strFilename)
     local taTest = {teTest_input, teTest_target}
 
     return taTrain, taTest
-
   end
+
+
 
   return dataLoad
 end

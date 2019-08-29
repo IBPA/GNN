@@ -101,13 +101,13 @@ do
 		local teB = torch.Tensor(nM) -- Note: 2d if real gels used
 		teB:copy(teY)
 		
-    -- ** assuming max of "1"
-    -- d) construct teXs
-    local teXs = getRandomInput(100, taMins.inputs, taMaxs.inputs) -- nRandomSamples:200
-    
-    -- e) construct As
-    nM = teXs:size(1)
-    teH = torch.exp(torch.cmul(teXs,
+	    -- ** assuming max of "1"
+	    -- d) construct teXs
+	    local teXs = getRandomInput(100, taMins.inputs, taMaxs.inputs) -- nRandomSamples:200
+	    
+	    -- e) construct As
+	    nM = teXs:size(1)
+	    teH = torch.exp(torch.cmul(teXs,
 																		torch.expand(torch.view(teP, 1, nD), 
 																								 nM, nD)))
 		teYH = torch.mul(teH, taMaxs.output)
@@ -116,8 +116,8 @@ do
 													  teH,
 													  torch.mul(teYH, -1)})
     
-    -- f) construct Bs
-    local teBs = torch.Tensor(nM):fill(taMaxs.output)
+	    -- f) construct Bs
+	    local teBs = torch.Tensor(nM):fill(taMaxs.output)
     
 		local status, teW = gurobiW.gelsNonNegativeWithMax(teA, teB, teAs, teBs)
 		if status ~= 2 then
@@ -127,7 +127,7 @@ do
 		return teW
 	end
 	
-function SyngV7.fuLoss(teP, teW, teX, teY)
+	function SyngV7.fuLoss(teP, teW, teX, teY)
 		local nD = teX:size(2)
 		local nM = teX:size(1)
 		-- Loss function: |Aw-B| ToDo:consider the original cost function
@@ -162,22 +162,22 @@ function SyngV7.fuLoss(teP, teW, teX, teY)
 
 	end
 
-  function isValid(teX)
-    if teX:max() < 20 then
-      return true
-    else
-      return false
-    end
-  end
+	function isValid(teX)
+		if teX:max() < 20 then
+		  return true
+		else
+		  return false
+		end
+	end
   
 	function SyngV7.fuForOptim(teX, teY, teInitParam, taMins, taMaxs) -- ToDo: test(although minmal code)
-    if not isValid(teInitParam) then -- ** THIS IS A HACK BUT Needed to guard rare big values, not sure why CG comes up with!
-      teInitParam:fill(0)
-      io.write("!! GUARD USED !!")
-    end
+	    if not isValid(teInitParam) then -- ** THIS IS A HACK BUT Needed to guard rare big values, not sure why CG comes up with!
+	      teInitParam:fill(0)
+	      io.write("!! GUARD USED !!")
+	    end
     
 		-- a) assume const teInitParam (i.e. p1, p2) and get teW
-	 local teW = SyngV7.getOptimGelsWithMax(teX, teY, teInitParam, taMins, taMaxs)
+		local teW = SyngV7.getOptimGelsWithMax(teX, teY, teInitParam, taMins, taMaxs)
 
 		-- b) assume const teW and calculate grad for p1, p2
 		local fuGradLoss = autograd(SyngV7.fuLoss)
@@ -186,12 +186,12 @@ function SyngV7.fuLoss(teP, teW, teX, teY)
 		return loss, teGradParams, teW
 	end
 
-  function  SyngV7.getInitWeightsFast(teX, teY)
-    local nD = teX:size(2)
-    local teTheta = torch.Tensor(nD*3+1):fill(0)
-    teTheta[1] = teY:mean()
-    return teTheta
-  end
+  	function  SyngV7.getInitWeightsFast(teX, teY)
+    	local nD = teX:size(2)
+    	local teTheta = torch.Tensor(nD*3+1):fill(0)
+    	teTheta[1] = teY:mean()
+    	return teTheta
+  	end
 
 	function SyngV7.getInitWeights(teX, teY, taMins, taMaxs, oParamCache) -- ToDo: test
 		local nD = teX:size(2)
@@ -200,7 +200,7 @@ function SyngV7.fuLoss(teP, teW, teX, teY)
 		local teWeightOptim = nil
 		local fuEval = function(teParam)
 			local loss, teGradParams, teCurrWeights = SyngV7.fuForOptim(teX, teY, teParam, taMins, taMaxs)
-    	teWeightOptim = teCurrWeights:clone()
+    		teWeightOptim = teCurrWeights:clone()
 			return loss, teGradParams
 		end
 
@@ -208,16 +208,16 @@ function SyngV7.fuLoss(teP, teW, teX, teY)
 		local nMaxRounds = 10 --10
 		local teBestTheta = torch.Tensor(nD*3+1)
 		local dBestErr = math.huge
-    local dMinGoodErr = (teY - teY:mean()):pow(2):mean()
-    local dGoodEnoughErr = dMinGoodErr/20
+    	local dMinGoodErr = (teY - teY:mean()):pow(2):mean()
+    	local dGoodEnoughErr = dMinGoodErr/20
 
 		local nCount = 0
-      local teTmp
-    for r=1, nMaxRounds do
-      nCount = nCount + 1
+      	local teTmp
+    	for r=1, nMaxRounds do
+      		nCount = nCount + 1
 
 			local teInitParam =  oParamCache:get(nD)
-         teTmp = teInitParam:clone()
+         	teTmp = teInitParam:clone()
 			local teParamOptim, lossOptim 
 			for i=1, 1 do
 				teParamOptim, lossOptim = optim.cg(fuEval, teInitParam)
@@ -232,30 +232,29 @@ function SyngV7.fuLoss(teP, teW, teX, teY)
 				teBestTheta:copy(teCurrTheta)
 			end
 
-         -- Early Stop Criteria
-         if dBestErr < dGoodEnoughErr then
-			io.write(" *^* ")
-            break
-         end
-
-  end
+			-- Early Stop Criteria
+			if dBestErr < dGoodEnoughErr then
+				io.write(" *^* ")
+				break
+			end
+		end
   
-  io.write("=")
-  io.write(dBestErr .. "=")
+  		io.write("=")
+  		io.write(dBestErr .. "=")
 --   for i=1, teTmp:size(1) do
 --     io.write(string.format("%.4f_", teTmp[i]))
 --   end
 
-  io.write("=(#" .. nCount .. ")=")
+  		io.write("=(#" .. nCount .. ")=")
   
-  local teBestP = teBestTheta:narrow(1, nD*2 + 2, nD)
-  if dBestErr > dMinGoodErr then
-    teBestTheta:fill(0)
-    teBestTheta[1] = teY:mean()
-    dBestErr = SyngV7.getMSE(teX, teBestTheta, teY) 
-    io.write("** fail back to mean, MSE: **" .. dBestErr)
-    dBestErr = nil
-  end
+  		local teBestP = teBestTheta:narrow(1, nD*2 + 2, nD)
+  		if dBestErr > dMinGoodErr then
+		    teBestTheta:fill(0)
+		    teBestTheta[1] = teY:mean()
+		    dBestErr = SyngV7.getMSE(teX, teBestTheta, teY) 
+		    io.write("** fail back to mean, MSE: **" .. dBestErr)
+		    dBestErr = nil
+  		end
 
 
 		return teBestTheta, teBestP, dBestErr
