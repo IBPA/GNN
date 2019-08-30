@@ -53,14 +53,18 @@ function testSuite.predict()
 end
 
 -- Creates instance of CMLinear and call train
-function testSuite.train()
+-- Creates instance of CMLinear and call train
+-- this train is 2D input, thus 2+1+1 = 4d for the theta. Carefule: input matrix must be non-singular (invertible).
+function testSuite.train_2D()
    -- Prepare Inputs and Outputs
    local teInput = torch.Tensor({{1, 2}, 
                                  {2, 3},
-                                 {1, 4}})
+                                 {1, 4},
+                                 {3 ,4}})
    local teTarget = torch.Tensor({{1}, 
                                   {2},
-                                  {3}})
+                                  {3},
+                                  {4}})
 
    -- Create Module
    local nD = 2
@@ -71,8 +75,30 @@ function testSuite.train()
    -- Train
    mNet:train(teInput, teTarget)
 
+
    -- Validate
-   local teExpectedTheta = torch.Tensor({{-0.4000, -0.6000,  0.8000,  0.2000}})
+   local teExpectedTheta = torch.Tensor({{0.5000, -1.5000,  0.5000,  0.5000}})
+   tester:eq(mNet.teTheta, teExpectedTheta, 0.001, "teTheta should match expected value.")
+end
+
+function testSuite.train_1D()
+   -- Prepare Inputs and Outputs
+   local teInput = torch.Tensor({{1},
+                                  {2}})
+   local teTarget = torch.Tensor({{1}, 
+                                  {3}})
+
+   -- Create Module
+   local nD = 1
+   local taMins = { output = 0, inputs = torch.zeros(nD) }
+   local taMaxs = { output = 1, inputs = torch.Tensor(nD):fill(10) }
+   local mNet = CMLinear.new(nD, taMins, taMaxs)
+
+   -- Train
+   mNet:train(teInput, teTarget)
+
+   -- Validate
+   local teExpectedTheta = torch.Tensor({{-1.0000,  2.0000}})
    tester:eq(mNet.teTheta, teExpectedTheta, 0.001, "teTheta should match expected value.")
 end
 
