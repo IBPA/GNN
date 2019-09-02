@@ -51,6 +51,12 @@ function CMLinearL2:train(teInput, teTarget)
   local y = teTarget
 
 
+  print(Z)
+  print("---z---")
+  print(ZT)
+  print("---zt---")
+  print(y)
+  print("---y---")
   local teX
   function fuWrapGels()
     teX = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(self.talambda * torch.ones(ZT:size(1)))), ZT), y)

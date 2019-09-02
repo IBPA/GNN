@@ -61,8 +61,13 @@ function testSuite.train_2D()
    -- Prepare Inputs and Outputs
    local teInput = torch.Tensor({{1, 2}, 
                                  {2, 3},
-                                 {1, 4},
-                                 {3 ,4}})
+                                 {3, 5},
+                                 {5, 7}})
+
+      -- local teInput = torch.Tensor({{1, 2}, 
+      --                            {2, 3},
+      --                            {1, 4},
+      --                            {3 ,4}})
    local teTarget = torch.Tensor({{1}, 
                                   {2},
                                   {3},
@@ -77,10 +82,12 @@ function testSuite.train_2D()
 
    -- Train
    mNet:train(teInput, teTarget)
+   -- print("---mnet.theta---")
+   -- print(mNet.teTheta)
 
 
    -- Validate
-   local teExpectedTheta = torch.Tensor({{0.5000, -1.5000,  0.5000,  0.5000}})
+   local teExpectedTheta = torch.Tensor({{-0.5833, 0.9167, 0.4167, -0.0833}})
    tester:eq(mNet.teTheta, teExpectedTheta, 0.001, "teTheta should match expected value.")
 end
 
