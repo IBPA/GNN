@@ -1,4 +1,4 @@
---[[ Description: CLinear class implements linear GNN module with multiplicative terms.
+--[[ Description: CLinear class implements linear GNN module based on CMLinear but using L2 regularization with auto lambda determined by k-fold cross validation method.
 ]]
 require 'math'
 local dataLoad = dataLoad or require('./common_dataLoad.lua')
@@ -52,22 +52,12 @@ end
 
 
 
-function CMLinearL2AutoLambda:getBeta(l, teInput, teTarget)
+function CMLinearL2AutoLambda:getBeta(dLambda, teInput, teTarget)
 
   local Z = teInput
   local ZT = Z:transpose(1, 2)
   local y = teTarget
-  local lambda = l
-  -- local ZTZ = torch.mm(ZT, Z)
-  -- local lambdaIp = torch.diag(lambda * torch.ones(ZT:size(1)))
-  -- local ZTZIPinv = torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1))))
-  -- local ZTY = torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1)))), ZT)
-  -- print(Z)
-  -- print("---z---")
-  -- print(ZT)
-  -- print("---zt---")
-  -- print(y)
-  -- print("---y---")
+  local lambda = dLambda
 
   local beta = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(lambda * torch.ones(ZT:size(1)))), ZT), y)
   return beta
@@ -101,15 +91,7 @@ function CMLinearL2AutoLambda:getCVErr(l, teInput, teTarget, kfold)
     if ((teTrain_input ~= nil) and (teTrain_target ~= nil) and (teTest_input  ~= nil) and (teTest_target ~= nil)) then
 
 		  teBeta = self:getBeta(l, teTrain_input, teTrain_target)
-      -- print(teBeta)
-      -- print("---beta---")
-      -- print(teTest_input)
-      -- print("--teTest_input--")
-      -- print(teTest_target)
-      -- print("--teTest_target--")
       tempErr = self:getMSE(teTest_input, teBeta, teTest_target)
-      -- print(tempErr)
-      -- print("---error---")
 		  totalError = totalError + tempErr
       countFold = countFold + 1
     end
@@ -131,21 +113,12 @@ function CMLinearL2AutoLambda:train(teInput, teTarget)
     tempKFold = maxPossibleK
   end
 
-	
 	for l = 0, 2, 0.2 do
-    -- print("when l is: ")
-    -- print(l)
-    -- print("---l---")
 		tempErr = self:getCVErr(l, teA, teTarget, tempKFold)
-    -- print(tempErr)
-    -- print("---tempErr---")
-    -- update if needed
 		if tempErr < bestErr then
 			bestErr = tempErr
 			bestL = l
 		end
-    -- print(bestL)
-    -- print("--bestL--")
 	end
 
 	local teBestTheta = self:getBeta(bestL, teA, teTarget)

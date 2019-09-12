@@ -1,12 +1,12 @@
---[[ Description: CLinear class implements linear GNN module with multiplicative terms.
+--[[ Description: CLinear class implements linear GNN module based on CMLinear but using L2 regularization with lambda as parameter.
 ]]
 
 CMLinearL2 = torch.class('CMLinearL2')
 
-function CMLinearL2:__init(nInputs, taMins, taMaxs, taLambda)
+function CMLinearL2:__init(nInputs, taMins, taMaxs, dLambda)
   self.taMins = taMins
   self.taMaxs = taMaxs
-  self.talambda = taLambda
+  self.dlambda = dLambda
 
   self.nInputs = nInputs
   self.nMulTerms = (nInputs * (nInputs-1))/2
@@ -50,16 +50,9 @@ function CMLinearL2:train(teInput, teTarget)
   local ZT = Z:transpose(1, 2)
   local y = teTarget
 
-
-  print(Z)
-  print("---z---")
-  print(ZT)
-  print("---zt---")
-  print(y)
-  print("---y---")
   local teX
   function fuWrapGels()
-    teX = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(self.talambda * torch.ones(ZT:size(1)))), ZT), y)
+    teX = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(self.dlambda * torch.ones(ZT:size(1)))), ZT), y)
   end
 
   if pcall(fuWrapGels) then

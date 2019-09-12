@@ -30,7 +30,6 @@ function testSuite.initial()
 
 end
 
-
 -- Creates instance of CMLinearL2AutoLambda and call predict
 function testSuite.predict()
    -- Prepare Inputs and Outputs
@@ -52,7 +51,6 @@ function testSuite.predict()
    tester:eq(teOutput, teExpectedOutput, 0.001, "teOutput should match expected value.")
 end
 
--- Creates instance of CMLinearL2AutoLambda and call train
 -- Creates instance of CMLinearL2AutoLambda and call train
 -- this train is 2D input, thus 2+1+1 = 4d for the theta. Carefule: input matrix must be non-singular (invertible).
 function testSuite.train_2D()
@@ -82,6 +80,8 @@ function testSuite.train_2D()
    tester:eq(mNet.teTheta, teExpectedTheta, 0.001, "teTheta should match expected value.")
 end
 
+-- Creates instance of CMLinearL2AutoLambda and call train
+-- this train is 1D input, thus 1+0+1 = 2d for the theta. Carefule: input matrix must be non-singular (invertible).
 function testSuite.train_1D()
    -- Prepare Inputs and Outputs
    local teInput = torch.Tensor({{1},
@@ -190,7 +190,7 @@ function testSuite.getBeta()
                                   {2},
                                   {3},
                                   {4}})
-   local l = 0
+   local dLambda = 0
 
    -- Create Module
    local nD = 2
@@ -199,16 +199,12 @@ function testSuite.getBeta()
    local mNet = CMLinearL2AutoLambda.new(nD, taMins, taMaxs)
 
    -- run function
-   local beta = mNet:getBeta(l, teInput, teTarget)
-   -- print(beta)
-
+   local beta = mNet:getBeta(dLambda, teInput, teTarget)
 
    -- Validate
    local teExpectedTheta = torch.Tensor({{0.5000}, {-1.5000},  {0.5000},  {0.5000}})
-   -- print(teExpectedTheta)
    tester:eq(beta, teExpectedTheta, 0.001, "teTheta should match expected value.")
 end
-
 
 -- test get Cross Validation Error function
 function testSuite.getCVErr()

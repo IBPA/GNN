@@ -18,10 +18,13 @@ Follow [installation steps](doc/installation.md) for details.
 
 ``` ./predict.py --input gnn_input.csv [--load-model-dir model_dir] --output gnn_pred.csv```
 
+**Command Arguments.**
+
+* ```--method```([e.g.](MLinearGNN)): declare which GNN model is used to train. There are three options: GNN, MLinearGNN, MLinearL2GNN
+
 **File formats.**
 
 * ```dataset.csv```([e.g.](./data/hello_world/dataset.csv)): Each row corresponds to GE profile of an experiment. First column contains knockout genes (separated by ```&``` if multiple knockouts). Each other column represents the expression of a gene. First row encodes column names.
-* ```GNN```([e.g.](MlinearGNN)): Build and train GNN model.
 * ```net.tsv```([e.g.](./data/hello_world/net.tsv)): Each row encodes a single regulatory relationship. First column corresponds to transcription factor (TF) gene and second column to the gene regulated by TF.  
 * ```gnn_input.csv```([e.g.](./data/hello_world/gnn_input.csv)): It encodes knockout information (column1) and the expression of master regulator (MR) genes (column2 to last). Each row, corresponds to an experiment. The list of MR genes can be found from ```model_dir/MR_genes.csv```. First row encodes column names.
 
