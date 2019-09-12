@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 """ Build and train GNN model """
 
 import argparse
@@ -21,6 +21,10 @@ def get_arg_parser():
     parser.add_argument('--dataset', metavar='dataset.csv', type=str,
                         required=True, dest="dataset",
                         help='Gene expression profiles.')
+
+    parser.add_argument('--method', metavar='MLinearGNN', type=str,
+                        required=False, dest="method",
+                        help='Choose method options include GNN, MLinearGNN, and MLinearL2GNN.')
 
     parser.add_argument('--trn', metavar='net.tsv', type=str,
                         required=False, dest="net",
@@ -102,8 +106,8 @@ def prep_data(dataset_filename, dep_filename, model_dir, mr_list, nmr_list):
 
     return train_files
 
-def train_model(model_dir):
-    train_script = "th {!s}/train_GNN.lua {!s}".format(_script_dir, model_dir)
+def train_model(model_dir, method):
+    train_script = "th {!s}/train_{!s}.lua {!s}".format(_script_dir, method, model_dir)
     subprocess.call([train_script], shell=True)
 
 command_args = get_arg_parser().parse_args()
@@ -123,4 +127,4 @@ dep_filename, mr_list, nmr_list = gen_dep_file(net_filename, command_args.model_
 prep_data(command_args.dataset, dep_filename, command_args.model_dir, mr_list, nmr_list)
 
 # 4) train GNN model and save into "model_dir/gnn.model"
-train_model(command_args.model_dir)
+train_model(command_args.model_dir, command_args.method)
