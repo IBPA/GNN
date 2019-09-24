@@ -69,13 +69,14 @@ function CMLinearL2AutoLambda:train(teInput, teTarget)
 	local dBestErr = math.huge
 	local dBestLambda = 0
   local nTempKFold = 5
+  local MAX_LAMBDA = 2
 	-- k-fold cross validation on lambda(0, 2, 10)
   local maxPossibleK = teInput:size(1)
   if maxPossibleK < 5 then
     nTempKFold = maxPossibleK
   end
 
-	for l = 0, 2, 0.2 do
+	for l = 0, MAX_LAMBDA, 0.2 do
 		tempErr = self:getCVErr(l, teA, teTarget, nTempKFold)
 		if tempErr < dBestErr then
 			dBestErr = tempErr
