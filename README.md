@@ -12,7 +12,7 @@ Follow [installation steps](doc/installation.md) for details.
 ### How to use GNN
 **Training.** To train a GNN, you only need the GE dataset. There is also the option to also supply the known/inferred TRN network as a tsv file (see bellow for file formats). If no TRN file is provided, the GNN trainer will first run the GENIE3 method, create an inferred TRN network and it will use that to train the GNN. By default, the trained model will be saved under directory named `model_dir`.To train the GNN, write:
 
-``` ./train.py --dataset dataset.csv --method GNN [--trn net.tsv] [--output-model-dir model_dir]```
+``` ./train.py --dataset dataset.csv [--method MLinearGNN] [--trn net.tsv] [--output-model-dir model_dir]```
 
 **Prediction.** A trained GNN can be used to predict a new gene expression profile:
 
@@ -20,7 +20,7 @@ Follow [installation steps](doc/installation.md) for details.
 
 **Command Arguments.**
 
-* ```--method```([e.g.](MLinearGNN)): declare which GNN model is used to train. There are three options: GNN, MLinearGNN, MLinearL2GNN
+* ```MLinearGNN```([e.g.](MLinearL2GNN)): declare which GNN model is used to train. There are three options: GNN, MLinearGNN, MLinearL2GNN
 
 **File formats.**
 
