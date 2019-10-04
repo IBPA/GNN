@@ -1,7 +1,7 @@
 --[[ Description: CLinear class implements linear GNN module based on CMLinear but using L2 regularization with lambda as parameter.
 ]]
-
-CMLinearL2 = torch.class('CMLinearL2')
+CMLinear = require('../lib_lua/CMLinear.lua')
+CMLinearL2 = torch.class('CMLinearL2', 'CMLinear')
 
 function CMLinearL2:__init(nInputs, taMins, taMaxs, dLambda)
   self.taMins = taMins
@@ -14,60 +14,24 @@ function CMLinearL2:__init(nInputs, taMins, taMaxs, dLambda)
   self.teGradTheta = torch.zeros(self.teTheta:size())
 end
 
-function CMLinearL2:pri_extendWithMulTerms(teInput)
-  local nD = teInput:size(2)
-  if nD < 2 then
-    return teInput
-  end
-
-  -- 1) Build matrix of for all pairs of input multiplies
-  local teMulTerms = torch.zeros(teInput:size(1), self.nMulTerms)
-  local idMul = 0
-  for i=1,nD do
-    for j=i+1,nD do
-      idMul = idMul + 1
-      teMulTerms:select(2, idMul):copy(torch.cmul(teInput:select(2, i), teInput:select(2, j)))
-    end
-  end
-
-  -- 2) Extend
-  return torch.cat({teInput, teMulTerms}, 2)
-end
-
-function CMLinearL2:predict(teInput)
-  local teInputExtended = self:pri_extendWithMulTerms(teInput)
-  local teV1 = torch.Tensor(teInputExtended:size(1), 1):fill(self.teTheta[1][1]) -- bias
-  local teV2 = self.teTheta:narrow(2, 2, self.teTheta:size(2)-1):t()
-  local teOutput = torch.addmm(teV1, teInputExtended, teV2)
-  teOutput:clamp(self.taMins.output, self.taMaxs.output)
-
-  return teOutput
-end
-
 function CMLinearL2:train(teInput, teTarget)
   local teInputExtended = self:pri_extendWithMulTerms(teInput)
-  local Z = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended)
-  local ZT = Z:transpose(1, 2)
-  local y = teTarget
+  -- add bias vectore to the extended input tensor matrix
+  local teInputWB = torch.cat(torch.ones(teInputExtended:size(1), 1), teInputExtended) -- input with bias
+  local teInputWBT = teInputWB:transpose(1, 2) -- input with bias transpose matrix
+  local teOutput = teTarget
 
-  local teX
-  function fuWrapGels()
-    teX = torch.mm(torch.mm(torch.inverse(torch.mm(ZT, Z) + torch.diag(self.dlambda * torch.ones(ZT:size(1)))), ZT), y)
+  local teBeta -- local variable storing teTheta
+  -- function that calculate beta
+  function fuCalcBeta()
+    teBeta = torch.mm(torch.mm(torch.inverse(torch.mm(teInputWBT, teInputWB) + torch.diag(self.dlambda * torch.ones(teInputWBT:size(1)))), teInputWBT), teOutput)
   end
 
-  if pcall(fuWrapGels) then
-     self.teTheta:copy(teX)
+  if pcall(fuCalcBeta) then
+     self.teTheta:copy(teBeta)
   else
      print("Error in gels call!!")
      self.teTheta:fill(0)
      self.teTheta[1][1] = torch.mean(teTarget)
   end
-end
-
-function CMLinearL2:getParamPointer()
-  return self.teTheta
-end
-
-function CMLinearL2:getGradParamPointer()
-  return self.teGradTheta
 end

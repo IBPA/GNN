@@ -9,12 +9,12 @@ require('./lib_lua/data.lua')
 local grnn = require('./lib_lua/grnn.lua')
 
 function fuGetFilenames(strDir)
-    local strFilenameTF = string.format("%s/train_MR.tsv", strDir)
-    local strFilenameNonTF = string.format("%s/train_NMR.tsv", strDir)
-    local strFilenameKO = string.format("%s/train_KO.tsv", strDir)
-    local strFilenameStratifiedIds = nil
+  local strFilenameTF = string.format("%s/train_MR.tsv", strDir)
+  local strFilenameNonTF = string.format("%s/train_NMR.tsv", strDir)
+  local strFilenameKO = string.format("%s/train_KO.tsv", strDir)
+  local strFilenameStratifiedIds = nil
 
-    return strFilenameTF, strFilenameNonTF, strFilenameKO, strFilenameStratifiedIds
+  return strFilenameTF, strFilenameNonTF, strFilenameKO, strFilenameStratifiedIds
 end
 
 torch.manualSeed(0)
@@ -31,6 +31,6 @@ local mNet = grnn.create(CMLinearL2AutoLambda, oDepGraph, mDataTrain.taGERanges)
 grnn.train(mNet, mDataTrain.taData)
 
 -- 3) Save model
-local strModelFilename = string.format("%s/trained_MLinearGNN.model", strDir)
+local strModelFilename = string.format("%s/trained_MLinearL2GNN.model", strDir)
 torch.save(strModelFilename, mNet)
 print(string.format("Model saved to: '%s'", strModelFilename))

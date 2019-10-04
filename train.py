@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.5
 """ Build and train GNN model """
 
 import argparse
@@ -22,9 +22,9 @@ def get_arg_parser():
                         required=True, dest="dataset",
                         help='Gene expression profiles.')
 
-    parser.add_argument('--method', metavar='MlinearGNN', type=str,
-                        required=True, dest="method",
-                        help='GNN method profiles.')
+    parser.add_argument('--method', metavar='MLinearGNN', type=str,
+                        required=False, dest="method",
+                        help='Choose method options include GNN, MLinearGNN, and MLinearL2GNN.')
 
     parser.add_argument('--trn', metavar='net.tsv', type=str,
                         required=False, dest="net",
