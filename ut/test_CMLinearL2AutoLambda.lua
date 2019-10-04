@@ -31,7 +31,7 @@ function testSuite.train_2D()
   mNet:train(teInput, teTarget)
 
   -- Validate
-  local teExpectedTheta = torch.Tensor({{-0.1418, 0.4965, 0.4413, -0.0412}})
+  local teExpectedTheta = torch.Tensor({{-0.3992, 0.5282, 0.5202, -0.0524}})
   tester:eq(mNet.teTheta, teExpectedTheta, 0.001, "teTheta should match expected value.")
 end
 
@@ -97,41 +97,14 @@ function testSuite.maskForKFold()
   tester:eq(teTest_target, teExpectedTest_target, 0.001, "teTest_target should match expected value.")
 end
 
--- Creates instance of CMLinearL2AutoLambda and call getBeta to calculate beta given input, output and lambda
-function testSuite.getBeta()
-  -- Prepare Inputs and Outputs
-  local teInput = torch.Tensor({{1, 1, 2, 2}, 
-                               {1, 2, 3, 6},
-                               {1, 1, 4, 4},
-                               {1, 3 ,4, 12}})
-  local teTarget = torch.Tensor({{1}, 
-                                {2},
-                                {3},
-                                {4}})
-  local dLambda = 0
-
-  -- Create Module
-  local nDimension = 2
-  local taMins = { output = 0, inputs = torch.zeros(nDimension) }
-  local taMaxs = { output = 1, inputs = torch.Tensor(nDimension):fill(10) }
-  local mNet = CMLinearL2AutoLambda.new(nDimension, taMins, taMaxs)
-
-  -- run function
-  local teBeta = mNet:getBeta(dLambda, teInput, teTarget)
-
-  -- Validate
-  local teExpectedTheta = torch.Tensor({{0.5000}, {-1.5000},  {0.5000},  {0.5000}})
-  tester:eq(teBeta, teExpectedTheta, 0.001, "teTheta should match expected value.")
-end
-
 -- Creates instance of CMLinearL2AutoLambda and test get Cross Validation Error function
-function testSuite.getCVErr()
+function testSuite.CrossValidation()
   -- Prepare Inputs and Outputs and other parameter
-  local teInput = torch.Tensor({{1, 1, 2, 2}, 
-                               {1, 2, 3, 6},
-                               {1, 3, 5, 15},
-                               {1, 5 ,7, 35},
-                               {1, 7, 11, 77}})
+  local teInput = torch.Tensor({{1, 2}, 
+                               {2, 3},
+                               {3, 5},
+                               {5 ,7},
+                               {7, 11}})
   local teTarget = torch.Tensor({{1}, 
                                 {2},
                                 {3},
@@ -145,36 +118,14 @@ function testSuite.getCVErr()
   local taMins = { output = 0, inputs = torch.zeros(nDimension) }
   local taMaxs = { output = 1, inputs = torch.Tensor(nDimension):fill(10) }
   local mNet = CMLinearL2AutoLambda.new(nDimension, taMins, taMaxs)
+  local oModule = CMLinearL2.new(nDimension, taMins, taMaxs, dLambda)
 
   -- run function
-  local dResultError = mNet:getCVErr(dLambda, teInput, teTarget, nFolds)
+  local dMeanError = mNet:CrossValidation(oModule, teInput, teTarget, nFolds)
 
   -- validate
-  local dExpectedError = 0.240
+  local dExpectedMeanError = 6
   tester:eq(dResultError, dExpectedError, 0.001, "the result error should match expected value.")
-end
-
--- Creates instance of CMLinearL2AutoLambda and test getMSE to get mean squared error
-function testSuite.getMSE()
-  -- Prepare Inputs and Outputs and other parameter
-  local teInput = torch.Tensor({{1, 1},
-                                {1, 2}})
-  local teTheta = torch.Tensor({{-1.0000},
-                                {2.0000}})
-  local teTarget = torch.Tensor({{1}, 
-                                  {3}})
-  -- Create Module
-  local nDimension = 2
-  local taMins = { output = 0, inputs = torch.zeros(nDimension) }
-  local taMaxs = { output = 1, inputs = torch.Tensor(nDimension):fill(10) }
-  local mNet = CMLinearL2AutoLambda.new(nDimension, taMins, taMaxs)
-
-  -- run fucntion
-  local dMSE = mNet:getMSE(teInput, teTheta, teTarget)
-
-  -- validate
-  local dExpectedMSE = 0
-  tester:eq(dMSE, dExpectedMSE, 0.001, "the MSE should match expected value.")
 end
 
 tester:add(testSuite)

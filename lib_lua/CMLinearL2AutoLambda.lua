@@ -2,25 +2,19 @@
 ]]
 require 'math'
 local dataLoad = dataLoad or require('./common_dataLoad.lua')
-CMLinear = require('../lib_lua/CMLinear.lua')
+require('../lib_lua/CMLinearL2.lua')
 
-CMLinearL2AutoLambda = torch.class('CMLinearL2AutoLambda', 'CMLinear')
+CMLinearL2AutoLambda = torch.class('CMLinearL2AutoLambda', 'CMLinearL2')
 
--- get mean squared error
-function CMLinearL2AutoLambda:getMSE(teX, teTheta, teY)
-	local mSE = (teY - torch.mm(teX, teTheta)):pow(2):mean()
-	return mSE
-end
+function CMLinearL2AutoLambda:__init(nInputs, taMins, taMaxs)
+  self.taMins = taMins
+  self.taMaxs = taMaxs
+  self.dlambda = dLambda
 
--- get beta, which is teTheta in the training process
-function CMLinearL2AutoLambda:getBeta(dLambda, teInput, teTarget)
-  local teInputWB = teInput -- input with bias
-  local teInputWBT = teInputWB:transpose(1, 2) -- input with bias transpose matrix
-  local teOutput = teTarget
-  local lambda = dLambda
-
-  local teBeta = torch.mm(torch.mm(torch.inverse(torch.mm(teInputWBT, teInputWB) + torch.diag(lambda * torch.ones(teInputWBT:size(1)))), teInputWBT), teOutput)
-  return teBeta
+  self.nInputs = nInputs
+  self.nMulTerms = (nInputs * (nInputs-1))/2
+  self.teTheta = torch.zeros(1, self.nInputs + self.nMulTerms + 1)
+  self.teGradTheta = torch.zeros(self.teTheta:size())
 end
 
 -- create a mask for k-fold cross validation
@@ -41,49 +35,51 @@ function CMLinearL2AutoLambda:maskForKFold(teInput, teTarget, foldID, nFolds)
   return teTrain_input, teTrain_target, teTest_input, teTest_target
 end
 
--- get cross validation error
-function CMLinearL2AutoLambda:getCVErr(l, teInput, teTarget, nFolds)
-	local nFoldModMax = nFolds - 1
-	local dTotalError = 0
+-- cross validation
+function CMLinearL2AutoLambda:CrossValidation(oModule, teInput, teTarget, nFolds)
+  local nFoldModMax = nFolds - 1
+  local dTotalError = 0
   local nCountFold = 0
 
-	for foldID = 0, nFoldModMax, 1 do
-		teTrain_input, teTrain_target, teTest_input, teTest_target = self:maskForKFold(teInput, teTarget, foldID, nFolds)
+  for foldID = 0, nFoldModMax do
+    local teTrain_input, teTrain_target, teTest_input, teTest_target = self:maskForKFold(teInput, teTarget, foldID, nFolds)
     if ((teTrain_input ~= nil) and (teTrain_target ~= nil) and (teTest_input  ~= nil) and (teTest_target ~= nil)) then
-		  teBeta = self:getBeta(l, teTrain_input, teTrain_target)
-      dTempErr = self:getMSE(teTest_input, teBeta, teTest_target)
-		  dTotalError = dTotalError + dTempErr
+      oModule:train(teTrain_input, teTrain_target)
+      dTempErr = (teTest_target - oModule:predict(teTest_input)):pow(2):mean()
+      dTotalError = dTotalError + dTempErr
       nCountFold = nCountFold + 1
     else
-      print("Error in getCVErr call!!")
+      print("Error in CrossValidation!!")
     end
-	end
-
-	dTotalError = dTotalError / nCountFold
-	return dTotalError
+  end
+  local meanErr = dTotalError / nCountFold
+  return meanErr
 end
 
 function CMLinearL2AutoLambda:train(teInput, teTarget)
-  local teInputExtended = self:pri_extendWithMulTerms(teInput)
-  local teA = torch.cat(torch.ones(teInput:size(1), 1), teInputExtended)
-	local dBestErr = math.huge
-	local dBestLambda = 0
-  local nTempKFold = 5
+  local dBestErr = math.huge
+  local dBestLambda = 0
+  local nKFold = 5
   local MAX_LAMBDA = 2
-	-- k-fold cross validation on lambda(0, 2, 10)
+  local LAMBDA_STEP = 0.2
+
+  -- validate k-fold
   local maxPossibleK = teInput:size(1)
   if maxPossibleK < 5 then
-    nTempKFold = maxPossibleK
+    nKFold = maxPossibleK
   end
 
-	for l = 0, MAX_LAMBDA, 0.2 do
-		tempErr = self:getCVErr(l, teA, teTarget, nTempKFold)
-		if tempErr < dBestErr then
-			dBestErr = tempErr
-			dBestLambda = l
-		end
-	end
-
-	local teBestTheta = self:getBeta(dBestLambda, teA, teTarget)
-	self.teTheta:copy(teBestTheta)
+  for l = 0, MAX_LAMBDA, LAMBDA_STEP do
+    local oM = CMLinearL2.new(self.nInputs, self.taMins, self.taMaxs, l)
+    local dTempErr = self:CrossValidation(oM, teInput, teTarget, nKFold, l)
+    if dTempErr < dBestErr then
+      dBestErr = dTempErr
+      dBestLambda = l
+    end
+  end
+  
+  -- train with bestL
+  self.oM = CMLinearL2.new(self.nInputs, self.taMins, self.taMaxs, dBestLambda)
+  self.oM:train(teInput, teTarget)
+  self.teTheta:copy(self.oM.teTheta)
 end
